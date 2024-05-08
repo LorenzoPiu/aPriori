@@ -1,5 +1,13 @@
-# Example Package
+# aPriori
 
-This is a simple example package. You can use
-[GitHub-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
-to write your content.
+A Python package to process combustion DNS.
+
+## Installation
+
+Run the following command to install:
+
+```python
+pip install -i https://test.pypi.org/simple/ aPriori
+```
+
+
