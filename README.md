@@ -2,7 +2,7 @@
   <img src="https://github.com/LorenzoPiu/Images/blob/main/Logo-0.0.8.png" width="35%">
 </p>
 
-# aPriori
+#
 
 A Python package to process combustion DNS.
 
