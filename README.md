@@ -10,8 +10,9 @@ A Python package to process combustion DNS.
 
 Run the following command to install:
 
-```python
+```bash
 pip install -i https://test.pypi.org/simple/ aPriori
 ```
 
+## Installation
 
