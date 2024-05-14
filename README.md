@@ -13,6 +13,3 @@ Run the following command to install:
 ```bash
 pip install -i https://test.pypi.org/simple/ aPriori
 ```
-
-## Installation
-
