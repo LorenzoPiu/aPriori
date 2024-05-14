@@ -1,0 +1,52 @@
+{
+ "folder_path" : "DNS_DATA_TEST/",
+ "data_path" : "data/",
+ "grid_path" : "grid/",
+ "chem_path" : "chem_thermo_tran/",
+ "chem_mech" : "li_h2.yaml",
+ "file_name" : "T_K_id001.dat",
+ "X_filename" : "X_m.dat",
+ "Y_filename" : "Y_m.dat",
+ "Z_filename" : "Z_m.dat",
+ "species": [
+             "H2",    
+             "O2",    
+             "H2O",   
+             "H",     
+             "O",     
+             "OH",    
+             "HO2",   
+             "H2O2",  
+             "N2"     
+     ],
+
+ "species_filenames": [
+             "YH2_id000.dat",    
+             "YO2_id000.dat",    
+             "YH2O_id000.dat",   
+             "YH_id000.dat",     
+             "YO_id000.dat",     
+             "YOH_id000.dat",    
+             "YHO2_id000.dat",   
+             "YH2O2_id000.dat",  
+             "YN2_id000.dat"
+     ],
+ "T_filename": "T_K_id000.dat",
+ "P_filename": "P_Pa_id000.dat",
+ "RHO_filename": "RHO_kgm-3_id000.dat",
+ "U_filename": "UX_ms-1_id000.dat",
+ "V_filename": "UY_ms-1_id000.dat",
+ "W_filename": "UZ_ms-1_id000.dat",
+ 
+ "reaction_rates_filenames": [
+              "RH2_id000.dat",    
+              "RO2_id000.dat",    
+              "RH2O_id000.dat",   
+              "RH_id000.dat",     
+              "RO_id000.dat",     
+              "ROH_id000.dat",    
+              "RHO2_id000.dat",   
+              "RH2O2_id000.dat",  
+              "RN2_id000.dat"
+     ]
+}
