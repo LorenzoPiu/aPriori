@@ -15,3 +15,6 @@ Run the following command to install:
 ```bash
 pip install -i https://test.pypi.org/simple/ aPriori
 ```
+
+## License
+[![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=plastic)](./LICENSE)
