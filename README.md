@@ -6,7 +6,7 @@
 
 A Python package to process combustion DNS.
 
-Check out the [Documentation webpage](https://lorenzos-organization-4.gitbook.io/apriori-documentation-1)
+Check out the [Documentation webpage](https://docs.aprioridns.org)
 
 ## Installation
 
