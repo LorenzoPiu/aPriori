@@ -4,7 +4,7 @@
 
 #
 
-A Python package to process combustion DNS.
+A Python package to process Direct Numerical Simulations of reacting and non reacting flows.
 
 Check out the [Documentation webpage](https://apriori.gitbook.io/apriori-documentation-1/)
 
