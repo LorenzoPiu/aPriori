@@ -13,7 +13,7 @@ Check out the [Documentation webpage](https://apriori.gitbook.io/apriori-documen
 Run the following command to install:
 
 ```bash
-pip install -i https://test.pypi.org/simple/ aPriori
+pip install aPrioriDNS
 ```
 
 ## License
