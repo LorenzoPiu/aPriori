@@ -1762,7 +1762,7 @@ class Field3D():
                 for j in range(len(T_chunk)):
                     gas.TPY  = T_chunk[j], P_chunk[j], Y_chunk[:, j]
                     tau_star = np.minimum(Tau_c_chunk[j], Tau_m_chunk[j])
-                    tau_star = np.minimum(tau_star, tau_star_max)
+                    tau_star = np.minimum(tau_star, tau_star_max) # limit the maximum residence time to avoid too long reactor integrations in non-reacting regions
                     
                     Y0       = gas.Y
                     h0       = gas.partial_molar_enthalpies/gas.molecular_weights # partial mass enthalpy [J/kg].
