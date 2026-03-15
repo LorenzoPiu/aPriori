@@ -644,7 +644,7 @@ aPriori.Field3D
 
 
 
-   .. py:method:: compute_reaction_rates_batch(n_chunks=1000, tau_c='SFR', tau_m='Kolmo', parallel=False, n_proc=None, exist_ok=False, overwrite=False)
+   .. py:method:: compute_reaction_rates_batch(n_chunks=1000, tau_c='SFR', tau_m='Kolmo', tau_star_max=0.1, parallel=False, n_proc=None, exist_ok=False, overwrite=False)
 
       Computes the reaction rates in batches for a filtered field.
 
