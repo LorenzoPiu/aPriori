@@ -14,11 +14,7 @@ Import the Module and Define an Array
 -------------------------------------
 
 First, import the required modules. Ensure that you have installed the package
-using:
-
-.. code-block:: bash
-
-   pip install aPrioriDNS
+in your environment, otherwise go back to the :doc:`installation guide <installation>`
 
 Then:
 
