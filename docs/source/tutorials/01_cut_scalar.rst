@@ -1,6 +1,12 @@
 Tutorial 1: Scalar3D class basic usage
 =======================================
 
+.. note::
+
+   The complete code associated with this tutorial is available
+   `here <https://github.com/LorenzoPiu/aPriori/blob/main/tutorials/01-cut_scalar.py>`_.
+
+
 The goal of this tutorial is to demonstrate how the ``Scalar3D`` class works in
 both its *standard mode* and *light mode*. Understanding these two approaches
 will make it easier to work with large 3D arrays efficiently.

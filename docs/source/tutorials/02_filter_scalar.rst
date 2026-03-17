@@ -1,6 +1,12 @@
 Tutorial 2: Filtering numpy arrays
 ==================================
 
+.. note::
+
+   The complete code associated with this tutorial is available
+   `here <https://github.com/LorenzoPiu/aPriori/blob/main/tutorials/02-filter_scalar.py>`_.
+
+
 In this tutorial you will learn how to apply spatial filters to a 3D field
 using the :class:`Scalar3D` class.  
 Make sure you have downloaded the data folder from the GitHub repository
