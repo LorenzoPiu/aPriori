@@ -6,7 +6,7 @@ Tutorial 8: Computational Singular Perturbation (CSP) analysis
    `here <https://github.com/LorenzoPiu/aPriori/blob/main/tutorials/08-csp_analysis.py>`_.
 
 This tutorial demonstrates how to perform Computational Singular Perturbation (CSP) 
-analysis on DNS data using the coupling between the ``aPriori`` and ``PyCSP`` packages.
+analysis on DNS data using the coupling between the ``aPriori`` and ``PyCSP``  packages.
 
 CSP analysis provides diagnostic tools to understand the chemical dynamics in 
 reacting flows by decomposing the system into fast and slow modes. Two key 
@@ -24,9 +24,10 @@ The TSR is particularly useful for identifying where fast chemistry dominates
 and for defining local Damköhler numbers. APIs help pinpoint which specific 
 reactions control ignition, flame propagation, or radical production.
 
-For detailed theoretical background on CSP, TSR, and APIs, see 
-`Valorani et al. (2015) <https://doi.org/10.1080/13647830.2015.1046014>`_ and
-`Malpica Galassi et al. (2022) <https://doi.org/10.1016/j.softx.2022.101175>`_.
+For detailed theoretical background on CSP, TSR, and APIs, and usage of PyCSP see 
+`Valorani et al. <https://www.sciencedirect.com/science/article/abs/pii/S0010218015001534>`_ 
+:cite:p:`Valorani2015` and `Malpica Galassi <https://www.sciencedirect.com/science/article/abs/pii/S0010465522000832>`_.
+:cite:p:`Malpica2022pycsp`
 
 Import modules and define data path
 ------------------------------------
@@ -79,9 +80,10 @@ efficiently.
 Visualize TSR-based participation indices
 ------------------------------------------
 This visualization shows which chemical reactions have the largest influence on
-the system's characteristic time scale. Reactions with positive participation 
+the system's dynamics. Reactions with positive participation 
 (red) accelerate the dynamics, while those with negative participation (gray) 
-have a damping effect.
+have a damping effect. The dynamics can be locally either dissipative or explosive, depending
+on the TSR, which will be visualized in Fig. 3.
 
 .. container:: demo
 
