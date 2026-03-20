@@ -16,7 +16,7 @@ Lorenzo Piu, Arthur Péquin, Rodolfo Freitas, Salvatore Iavarone, Heinz Pitsch, 
 **Full article**
 
 The results were selected for a special issue of the conference, so the work was extended and published. 
-You can access the full article at `this link <https://link.springer.com/article/10.1007/s10494-024-00626-3>`
+You can access the full article at `this link <https://link.springer.com/article/10.1007/s10494-024-00626-3>`_
 
 **Slides:**  
 :download:`Download presentation (PDF) </_static/pdf/ML4Fluids-Cypher.pdf>`
@@ -34,11 +34,6 @@ You can access the full article at `this link <https://link.springer.com/article
 
 Overview
 --------
-
-.. note::
-
-   The results of this presentation were extended and published in the 
-   conference special issue. You can find the full article `here <https://link.springer.com/article/10.1007/s10494-024-00626-3>`
 
 This presentation introduces a **machine-learning–enhanced closure model**
 to improve the **Partially Stirred Reactor (PaSR)** formulation for
