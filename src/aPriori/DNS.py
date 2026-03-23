@@ -4592,6 +4592,10 @@ def download(repo_url="https://github.com/LorenzoPiu/aPriori-data/tree/main", de
             repo_url = "https://github.com/LorenzoPiu/aPriori-data/tree/main/Premixed_H2_Phi0.5"
             if dest_folder is None:
                 dest_folder = 'Premixed_H2_Phi0.5'
+        elif dataset.lower() == 'ch4_round_premixed':
+            repo_url = "https://github.com/LorenzoPiu/aPriori-data/tree/main/Methane_air_round_jet_premixed"
+            if dest_folder is None:
+                dest_folder = 'Methane_air_round_jet_premixed'
         elif dataset.lower() == 'hit':
             repo_url = "https://github.com/LorenzoPiu/aPriori-data/tree/main/Forced_HIT_ReL184"
             if dest_folder is None:
