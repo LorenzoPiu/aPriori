@@ -22,19 +22,19 @@ if not os.path.exists(T_path):
     print(f"The path '{T_path}' does not exist in your system. Downloading the dataset from Github...")
     ap.download(dataset='h2_lifted')
     
-DNS_field = ap.Field3D(directory)
+DNS_field = ap.Field(directory)
 
 filter_size = 32
 
 # Favre filter with Gaussian filter kernel
 field_filt_name = DNS_field.filter_favre(filter_size, filter_type='Gauss')
-DNS_field_filt_gauss = ap.Field3D(field_filt_name)
+DNS_field_filt_gauss = ap.Field(field_filt_name)
 
 # Favre filter with box filter kernel
 # The box filter can take a long time as the convolution operation is not
 # optimized. If you have any suggestion on how to improve it, please
 # open an issue on the Github page!
-DNS_field_filt_box = ap.Field3D(DNS_field.filter_favre(filter_size, filter_type='Box'))
+DNS_field_filt_box = ap.Field(DNS_field.filter_favre(filter_size, filter_type='Box'))
 
 # Plot the different filtering results
 DNS_field.plot_z_midplane('T',

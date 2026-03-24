@@ -4,11 +4,11 @@
 """
 
 __authors__ = "Lorenzo Piu"
-__copyright__ = "Copyright (c) 2024-2025, Lorenzo Piu, Heinz Pitsch, and Alessandro Parente"
+__copyright__ = "Copyright (c) 2024-2026, Lorenzo Piu, Heinz Pitsch, and Alessandro Parente"
 __credits__ = ["Aero-Thermo-Mechanics laboratories - Universite Libre de Bruxelles, Brussels, Belgium"
                "Institut für Technische Verbrennung (ITV) - RWTH Aachen University, Aachen, Germany"]
 __license__ = "GPL 3.0"
-__version__ = "1.2.3"
+__version__ = "1.3.0"
 __maintainer__ = ["Lorenzo Piu"]
 __email__ = ["lorenzo.piu@ulb.be"]
 __status__ = "Production"
@@ -16,7 +16,7 @@ __status__ = "Production"
 
 import json
 import os
-from .DNS import Field3D
+from .DNS import Field
 import numpy as np
   
 class TrainingBuilder(dict):
@@ -27,7 +27,7 @@ class TrainingBuilder(dict):
     A dictionary-like class that builds and manages a collection of VectorScaler instances for training purposes.
 
     This class includes methods to add, configure, and save/load multiple VectorScaler objects, 
-    and allows batch scaling of data based on a specified Field3D input.
+    and allows batch scaling of data based on a specified Field input.
     
     Attributes:
     -----------
@@ -48,10 +48,10 @@ class TrainingBuilder(dict):
             Add a new VectorScaler to the TrainingBuilder.
 
         - build_x(field):
-            Construct a feature matrix by transforming data from a Field3D instance.
+            Construct a feature matrix by transforming data from a Field instance.
 
         - fit(field):
-            Fit each VectorScaler in the TrainingBuilder to the corresponding data in the Field3D.
+            Fit each VectorScaler in the TrainingBuilder to the corresponding data in the Field.
 
         - load(file_path):
             Load the state of each scaler from a JSON file and reinitialize the TrainingBuilder.
@@ -148,11 +148,11 @@ class TrainingBuilder(dict):
         
     def build_x(self, field):
         """
-        Construct a feature matrix by transforming data from a Field3D instance.
+        Construct a feature matrix by transforming data from a Field instance.
 
         Parameters:
         -----------
-            - field (Field3D): The input field containing data to scale.
+            - field (Field): The input field containing data to scale.
 
         Returns:
         --------
@@ -160,14 +160,14 @@ class TrainingBuilder(dict):
 
         Raises:
         -------
-            - KeyError: If the field is not an instance of Field3D.
+            - KeyError: If the field is not an instance of Field.
         """
         def append_column(array_2d, column):
             column = np.array(column).reshape(-1, 1)  # Reshape to a 2D column
             return np.hstack((array_2d, column)) if array_2d.size else column  # Append column or return the new column
 
         # Check type
-        if not isinstance(field, Field3D):
+        if not isinstance(field, Field):
             raise KeyError("Keys must be strings.")
             
         # Start looping through the variables
@@ -184,31 +184,31 @@ class TrainingBuilder(dict):
     #     """
     #     Old function, only able to handle one field at a time.
     #     Delete after testing the new utility.
-    #     Fit each VectorScaler in the TrainingBuilder to the corresponding data in the Field3D.
+    #     Fit each VectorScaler in the TrainingBuilder to the corresponding data in the Field.
 
     #     Parameters:
     #     -----------
-    #         - field (Field3D): The field with data to fit each scaler.
+    #         - field (Field): The field with data to fit each scaler.
     #     """
     #     for variable_name in self.keys():
     #         self[variable_name].fit(getattr(field, variable_name).value)
     
     def fit(self, field):
         """
-        Fit each VectorScaler in the TrainingBuilder to the corresponding data in the Field3D or list of Field3D objects.
+        Fit each VectorScaler in the TrainingBuilder to the corresponding data in the Field or list of Field objects.
 
         Parameters:
         -----------
-            - field (Field3D or list of Field3D): The field(s) with data to fit each scaler.
+            - field (Field or list of Field): The field(s) with data to fit each scaler.
         """
         # Handle single field case
-        if isinstance(field, Field3D):
+        if isinstance(field, Field):
             fields = [field]
         # Handle list of fields case
-        elif isinstance(field, list) and all(isinstance(f,Field3D) for f in field):
+        elif isinstance(field, list) and all(isinstance(f,Field) for f in field):
             fields = field
         else:
-            raise TypeError("Input must be a Field3D object or a list of Field3D objects")
+            raise TypeError("Input must be a Field object or a list of Field objects")
         
         # Collect data from all fields for each variable
         for variable_name in self.keys():

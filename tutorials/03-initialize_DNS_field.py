@@ -7,7 +7,7 @@ Created on Fri May 24 14:10:20 2024
 """
 
 import os
-from aPriori.DNS import Field3D
+from aPriori.DNS import Field
 from aPriori import DNS
 import aPriori as ap
 import json
@@ -32,7 +32,7 @@ with open(os.path.join(directory,'info.json'), 'r') as file:
     info = json.load(file)
 DNS_shape = info['global']['Nxyz']
     
-DNS_field = Field3D(directory)
+DNS_field = Field(directory)
 
 DNS_field.T
 

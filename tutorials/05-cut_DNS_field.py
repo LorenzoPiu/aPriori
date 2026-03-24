@@ -8,7 +8,7 @@ Created on Fri May 24 14:50:44 2024
 
 import os
 import aPriori as ap
-from aPriori.DNS import Field3D
+from aPriori.DNS import Field
 from aPriori import DNS
 import json
 
@@ -25,11 +25,11 @@ if not os.path.exists(T_path):
 else:
     print("Folder path OK\n")
 
-DNS_field = Field3D(directory)
+DNS_field = Field(directory)
 
 cut_field_name = DNS_field.cut([40,50,10])
 
-DNS_field_cut = Field3D(cut_field_name)
+DNS_field_cut = Field(cut_field_name)
 
 DNS_field.plot_z_midplane('U_X',
                           vmin=100,

@@ -59,3 +59,7 @@ pytest_report.html
 docs/source/_static/figures/~$figures.pptx
 src/aPriori/__pycache__/DNS.cpython-311.pyc
 src/aPriori/_gradients_numpy.py
+docs/source/_static/figures/figures.pptx
+src/.\!13657\!.DS_Store
+src/.\!13783\!.DS_Store
+/version_upload_pypi

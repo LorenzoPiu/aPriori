@@ -15,8 +15,8 @@
    :alt: GPL v3.0 License
    :height: 20px
 
-.. |source| image:: https://img.shields.io/badge/Source-Github-02bfa6?&logo=Github&logoColor=white
-   :target: https://github.com/LorenzoPiu/aPrioriDNS/
+.. |source| image:: https://img.shields.io/badge/Github%20-%20%23C8C636?label=Source&logo=github&logoColor=white
+   :target: https://github.com/LorenzoPiu/aPriori/
    :alt: GitHub Source Code
    :height: 20px
 
@@ -26,7 +26,7 @@
    :height: 20px
 
 .. |issues| image:: https://img.shields.io/badge/Issues-Github-02bfa6?&logo=Github&logoColor=white
-   :target: https://github.com/LorenzoPiu/aPrioriDNS/issues
+   :target: https://github.com/LorenzoPiu/aPriori/issues
    :alt: GitHub Issues
    :height: 20px
 

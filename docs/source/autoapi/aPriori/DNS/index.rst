@@ -15,15 +15,15 @@ Classes
 .. toctree::
    :hidden:
 
-   /autoapi/aPriori/DNS/Field3D
-   /autoapi/aPriori/DNS/Scalar3D
-   /autoapi/aPriori/DNS/Mesh3D
+   /autoapi/aPriori/DNS/Field
+   /autoapi/aPriori/DNS/Scalar
+   /autoapi/aPriori/DNS/Mesh
 
 .. autoapisummary::
 
-   aPriori.DNS.Field3D
-   aPriori.DNS.Scalar3D
-   aPriori.DNS.Mesh3D
+   aPriori.DNS.Field
+   aPriori.DNS.Scalar
+   aPriori.DNS.Mesh
 
 
 Functions

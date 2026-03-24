@@ -47,9 +47,9 @@ Initialize field and plot midplanes
 .. container:: demo
 
    .. code-block:: python
-      :caption: Instantiate Field3D object and plot midplanes
+      :caption: Instantiate Field object and plot midplanes
 
-      DNS_field = ap.Field3D(directory)
+      DNS_field = ap.Field(directory)
 
       # Visualize the data
       # Default plotting of a variable along the x, y, z midplanes

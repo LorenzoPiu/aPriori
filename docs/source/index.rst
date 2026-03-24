@@ -30,6 +30,7 @@
    tutorials/05_cut_dns_field
    tutorials/06_filter_dns_field
    tutorials/07_data_driven_combustion
+   tutorials/08_csp_analysis
 
 .. toctree::
    :caption: API Guide
