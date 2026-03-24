@@ -17,7 +17,7 @@ import json
 directory = os.path.join('.', 'Lifted_H2_subdomain_csp') # change this with your path to the data folder
 figures_folder = 'figures_csp'
 
-dns_field = ap.Field3D(directory)
+dns_field = ap.Field(directory)
 
 dns_field.compute_csp(
     API_species=['H2O', 'OH'], 
