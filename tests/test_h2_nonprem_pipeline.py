@@ -15,7 +15,7 @@ def test_h2_premixed_end_to_end(apriori_test_cache_dir: str):
 
     End-to-end smoke/integration test:
       - download dataset if needed
-      - load Field3D
+      - load Field
       - compute reaction rates
       - Favre filter
       - compute a subset of derived quantities
@@ -49,7 +49,7 @@ def test_h2_premixed_end_to_end(apriori_test_cache_dir: str):
         os.makedirs(os.path.join(tests_data_folder, test_name), exist_ok=True)
     shutil.copytree(dns_data_folder_orig, dns_data_folder)
 
-    dns_field = ap.Field3D(dns_data_folder)
+    dns_field = ap.Field(dns_data_folder)
 
     # --- DNS reaction rates (should create RH2_DNS etc.)
     dns_field.compute_reaction_rates(exist_ok=True)
@@ -73,7 +73,7 @@ def test_h2_premixed_end_to_end(apriori_test_cache_dir: str):
     # --- Favre filter
     filter_size = 10
     filtered_path = dns_field.filter_favre(filter_size, exist_ok=True)
-    filtered_field = ap.Field3D(filtered_path)
+    filtered_field = ap.Field(filtered_path)
 
     # Filtered reaction rates
     filtered_field.compute_reaction_rates(exist_ok=True)
@@ -145,7 +145,7 @@ def test_h2_premixed_end_to_end(apriori_test_cache_dir: str):
     assert hasattr(filtered_field, "C_laplacian"), "Progress-variable laplacian should exist"
 
     # --- Optional: midplane cut smoke test (fast check it doesn't crash)
-    cut_field = ap.Field3D(filtered_field.cut([0, 0, 100], exist_ok=True))
+    cut_field = ap.Field(filtered_field.cut([0, 0, 100], exist_ok=True))
     assert cut_field.shape[2] == 1 or cut_field.shape[2] < filtered_field.shape[2], "Cut should reduce domain"
 
     # --- Optional: plot figures for qualitative check
