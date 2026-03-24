@@ -1,7 +1,7 @@
-aPriori.Mesh
-==============
+aPriori.DNS.Mesh
+================
 
-.. py:class:: aPriori.Mesh(X, Y, Z)
+.. py:class:: aPriori.DNS.Mesh(X, Y, Z)
 
    A class used to represent a 3D mesh.
 

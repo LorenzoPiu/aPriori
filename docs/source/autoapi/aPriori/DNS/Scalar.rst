@@ -1,7 +1,7 @@
-aPriori.Scalar
-================
+aPriori.DNS.Scalar
+==================
 
-.. py:class:: aPriori.Scalar(shape, value=None, path='')
+.. py:class:: aPriori.DNS.Scalar(shape, value=None, path='')
 
    A class representing a 3D scalar field.
 
