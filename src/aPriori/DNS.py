@@ -57,14 +57,14 @@ from PyCSP import Functions as csp   # type: ignore - comment to suppress warnin
 ###########################################################
 #                       Field3d
 ###########################################################
-class Field3D():
+class Field():
     """
     Class representing a 3D field with various attributes and methods for visualization and data management.
 
     Description:
     ------------
     
-    The `Field3D` class encapsulates a 3D field used in DNS, allowing for 
+    The `Field` class encapsulates a 3D field used in DNS, allowing for 
     operations such as data loading, filtering, and accessing various properties 
     of the field. This class is central to handling the volumetric data in 
     computational fluid dynamics simulations.
@@ -78,8 +78,8 @@ class Field3D():
     variables : dict
         Dictionary containing variable names and their corresponding settings.
     
-    mesh : Mesh3D object
-        Object containing the mesh. See the class Mesh3D for more information
+    mesh : Mesh object
+        Object containing the mesh. See the class Mesh for more information
     
     __field_dimension : int
         Dimensionality of the field, always set to 3
@@ -91,9 +91,9 @@ class Field3D():
     __init__(self, folder_path): 
         Constructor method to initialize a 3D field object.
         
-        dynamic attributes : Scalar3D objects
+        dynamic attributes : Scalar objects
         depending on the files contained in the main folder folder_path, 
-        initializes various attributes as Scalar3D objects. 
+        initializes various attributes as Scalar objects. 
         Example :
         Field attributes :
         +-------------+---------------------------------------------------------+
@@ -130,7 +130,7 @@ class Field3D():
         Build lists of attribute names and corresponding file paths based on the configuration specified in variables_list.
         
     check_valid_attribute(self, input_attribute):
-        check if the input attribute is assigned to the Field3D object.
+        check if the input attribute is assigned to the Field object.
     
     compute_chemical_timescale(self, mode='SFR', verbose=False):
         Computes the chemical timescale for the field, useful in Partially Stirred Reactor (PaSR) modeling.
@@ -251,11 +251,11 @@ class Field3D():
                 raise ValueError(f"Mesh shape does not correspond to the declared field shape {self.shape}. Please check the mesh files.")
 
         vprint ("Building mesh attribute...")
-        X=Scalar3D(self.shape, path=self.X_m_path)
-        Y=Scalar3D(self.shape, path=self.Y_m_path)
-        Z=Scalar3D(self.shape, path=self.Z_m_path)
+        X=Scalar(self.shape, path=self.X_m_path)
+        Y=Scalar(self.shape, path=self.Y_m_path)
+        Z=Scalar(self.shape, path=self.Z_m_path)
         
-        self.mesh = Mesh3D(X, Y, Z)
+        self.mesh = Mesh(X, Y, Z)
         vprint ("Mesh fields read correctly")
         
         if reactive:
@@ -300,7 +300,7 @@ class Field3D():
         
         self.attr_list.append(attr_name)
         self.paths_list.append(os.path.join(self.data_path, file_name))
-        setattr(self, attr_name, Scalar3D(self.shape, path=os.path.join(self.data_path, file_name)))
+        setattr(self, attr_name, Scalar(self.shape, path=os.path.join(self.data_path, file_name)))
         
         self.update()
                         
@@ -324,7 +324,7 @@ class Field3D():
         paths_list = []
         # bool_list = []
         if variable is None:
-            variables_list_ = Field3D.variables.copy()
+            variables_list_ = Field.variables.copy()
         else:
             variables_list_ = {variable : variables_list[variable]}
 
@@ -493,8 +493,8 @@ class Field3D():
             for Y_path, R_path in zip(species_paths, reaction_rates_paths):
                 if verbose:
                     print('...')
-                Y          = Scalar3D(self.shape, path=Y_path)
-                R          = Scalar3D(self.shape, path=R_path)
+                Y          = Scalar(self.shape, path=Y_path)
+                R          = Scalar(self.shape, path=R_path)
                 tau_2      = np.abs(Y.value/R.value)
                 idx        = np.abs(R.value)<threshold # indexes of the dormant species
                 tau_2[idx] = -inf_time     # in this way the dormant species should not be considered
@@ -533,11 +533,11 @@ class Field3D():
                     " \n>>> your_field_name.fuel = 'CH4'"
                     " \n>>> your_field_name.ox   = 'O2'")
             
-            Y_ox   = Scalar3D(shape=self.shape, path=self.find_path(f"Y{self.ox}"))
-            Y_fuel = Scalar3D(shape=self.shape, path=self.find_path(f"Y{self.fuel}"))
-            R_ox   = Scalar3D(shape=self.shape, path=self.find_path(f"R{self.ox}_LFR"))
-            R_fuel = Scalar3D(shape=self.shape, path=self.find_path(f"R{self.fuel}_LFR"))
-            RHO    = Scalar3D(shape=self.shape, path=self.find_path('RHO'))
+            Y_ox   = Scalar(shape=self.shape, path=self.find_path(f"Y{self.ox}"))
+            Y_fuel = Scalar(shape=self.shape, path=self.find_path(f"Y{self.fuel}"))
+            R_ox   = Scalar(shape=self.shape, path=self.find_path(f"R{self.ox}_LFR"))
+            R_fuel = Scalar(shape=self.shape, path=self.find_path(f"R{self.fuel}_LFR"))
+            RHO    = Scalar(shape=self.shape, path=self.find_path('RHO'))
             
             tau_chomiak = RHO.value*np.minimum( Y_ox.value/np.maximum(np.abs(R_ox.value),threshold), Y_fuel.value/np.maximum(np.abs(R_fuel.value),threshold) )
             save_file(tau_chomiak, self.find_path('Tau_c_Ch'))
@@ -590,7 +590,7 @@ class Field3D():
                              "You can compute Z using the function compute_mixture_fraction.\n"
                              "Example usage:\n"
                              ">>> import aPrioriDNS as ap"
-                             ">>> my_field = ap.Field3D('path_to_your_folder')\n"
+                             ">>> my_field = ap.Field('path_to_your_folder')\n"
                              ">>> my_field.compute_mixture_fraction(Y_ox_2=0.233, Y_f_1=0.117, s=2)"
                              )
             
@@ -599,7 +599,7 @@ class Field3D():
                               "You can compute them using the function compute_transport_properties.\n"
                               "Example usage:\n"
                               ">>> import aPrioriDNS as ap"
-                              ">>> my_field = ap.Field3D('path_to_your_folder')\n"
+                              ">>> my_field = ap.Field('path_to_your_folder')\n"
                               ">>> my_field.compute_transport_properties()"
                               )
             # self.compute_transport_properties()
@@ -784,7 +784,7 @@ class Field3D():
                              "You can compute C using the function compute_progress_variable.\n"
                              "Example usage:\n"
                              ">>> import aPrioriDNS as ap"
-                             ">>> my_field = ap.Field3D('path_to_your_folder')\n"
+                             ">>> my_field = ap.Field('path_to_your_folder')\n"
                              ">>> my_field.compute_progress_variable(species='H2O')"
                              )
         
@@ -832,7 +832,7 @@ class Field3D():
                              "You can compute C using the function compute_progress_variable.\n"
                              "Example usage:\n"
                              ">>> import aPrioriDNS as ap"
-                             ">>> my_field = ap.Field3D('path_to_your_folder')\n"
+                             ">>> my_field = ap.Field('path_to_your_folder')\n"
                              ">>> my_field.compute_progress_variable(species='H2O')"
                              )
         
@@ -929,7 +929,7 @@ class Field3D():
         
         Example:
         --------
-        >>> filtered_field = Field3D('path/to/filtered/data')
+        >>> filtered_field = Field('path/to/filtered/data')
         >>> filtered_field.DNS_folder_path = 'path/to/unfiltered/DNS/data'
         >>> filtered_field.compute_M(verbose=True)
         """
@@ -945,7 +945,7 @@ class Field3D():
                              "The path of the unfiltered data folder must be assigned with the following command:\n"
                              ">>> your_filtered_field.DNS_folder_path = 'your_unfiltered_DNS_folder_path'")
         
-        DNS_field = Field3D(self.DNS_folder_path)
+        DNS_field = Field(self.DNS_folder_path)
 
         if hasattr(self, 'K_DNS'):
             K_DNS = getattr(self, 'K_DNS').value # extract the filtered value filt(U*U)
@@ -1027,7 +1027,7 @@ class Field3D():
         
         Example:
         --------
-        >>> field = Field3D('your_folder_path')
+        >>> field = Field('your_folder_path')
         >>> field.compute_mixing_timescale(mode='Kolmo')
         '''
         
@@ -1038,9 +1038,9 @@ class Field3D():
         valid_modes = self.variables["Tau_m_{}"][2]
         check_input_string(mode, valid_modes, 'mode')
         
-        k_r        = Scalar3D(self.shape, path=self.find_path('K_r_Yosh'))
-        epsilon_r  = Scalar3D(self.shape, path=self.find_path('Epsilon_r_Smag'))
-        Mu         = Scalar3D(self.shape, path=self.find_path(f'Mu'))
+        k_r        = Scalar(self.shape, path=self.find_path('K_r_Yosh'))
+        epsilon_r  = Scalar(self.shape, path=self.find_path('Epsilon_r_Smag'))
+        Mu         = Scalar(self.shape, path=self.find_path(f'Mu'))
         
         if mode.lower() == 'kolmo':
             
@@ -1285,7 +1285,7 @@ class Field3D():
                 raise AttributeError("The filtered field does not have a value to identify the associated unfiltered data.\n"
                                  "The path of the unfiltered data folder must be assigned with the following command:\n"
                                  ">>> your_filtered_field.DNS_folder_path = 'your_unfiltered_DNS_folder_path'")
-            DNS_field = Field3D(self.DNS_folder_path)
+            DNS_field = Field(self.DNS_folder_path)
             
             # Check what filter was used for the folder and keep consistency
             if 'favre' in self.folder_path.lower():
@@ -1402,7 +1402,7 @@ class Field3D():
                 raise AttributeError("The filtered field does not have a value to identify the associated unfiltered data.\n"
                                  "The path of the unfiltered data folder must be assigned with the following command:\n"
                                  ">>> your_filtered_field.DNS_folder_path = 'your_unfiltered_DNS_folder_path'")
-            DNS_field = Field3D(self.DNS_folder_path, reactive=self.reactive)
+            DNS_field = Field(self.DNS_folder_path, reactive=self.reactive)
             
             #--------- Compute Anisotropic Residual Stress Tensor ------------#
             # Check what filter was used for the folder and keep consistency
@@ -1825,7 +1825,7 @@ class Field3D():
         Raises:
         -------
         TypeError: 
-            If U, V, W are not instances of Scalar3D or if mesh is not an instance of Mesh3D.
+            If U, V, W are not instances of Scalar or if mesh is not an instance of Mesh.
         ValueError: 
             If U, V, W and mesh do not have the same shape.
     
@@ -1845,7 +1845,7 @@ class Field3D():
     
         Example:
         --------
-        >>> field = Field3D('your_folder_path')
+        >>> field = Field('your_folder_path')
         >>> field.compute_strain_rate(save_derivatives=True, save_tensor=True, verbose=True)
         """
         
@@ -2078,7 +2078,7 @@ class Field3D():
                 raise AttributeError("The filtered field does not have a value to identify the associated unfiltered data.\n"
                                  "The path of the unfiltered data folder must be assigned with the following command:\n"
                                  ">>> your_filtered_field.DNS_folder_path = 'your_unfiltered_DNS_folder_path'")
-            DNS_field = Field3D(self.DNS_folder_path, reactive=self.reactive)
+            DNS_field = Field(self.DNS_folder_path, reactive=self.reactive)
             
             #--------- Compute Anisotropic Residual Stress Tensor ------------#
             # Check what filter was used for the folder and keep consistency
@@ -2385,7 +2385,7 @@ class Field3D():
                              "You can compute Z using the function compute_mixture_fraction.\n"
                              "Example usage:\n"
                              ">>> import aPrioriDNS as ap"
-                             ">>> my_field = ap.Field3D('path_to_your_folder')\n"
+                             ">>> my_field = ap.Field('path_to_your_folder')\n"
                              ">>> my_field.compute_mixture_fraction(Y_ox_2=0.233, Y_f_1=0.117, s=2)"
                              )
         
@@ -2855,11 +2855,11 @@ class Field3D():
                         show=True
                         ):
         """
-        Plots the x midplane of a specified attribute in the Field3D class.
+        Plots the x midplane of a specified attribute in the Field class.
     
         Description:
         ------------
-        This method plots the x midplane of a specified attribute in the Field3D class. It verifies 
+        This method plots the x midplane of a specified attribute in the Field class. It verifies 
         if the attribute is valid, and then uses the built in function contour_plot to generate 
         the plot.
     
@@ -2946,11 +2946,11 @@ class Field3D():
                         show=True
                         ):
         """
-        Plots the y midplane of a specified attribute in the Field3D class.
+        Plots the y midplane of a specified attribute in the Field class.
     
         Description:
         ------------
-        This method plots the z midplane of a specified attribute in the Field3D class. It verifies 
+        This method plots the z midplane of a specified attribute in the Field class. It verifies 
         if the attribute is valid, and then uses the built in function contour_plot to generate 
         the plot.
     
@@ -3041,11 +3041,11 @@ class Field3D():
                         show=True,
                         ):
         """
-        Plots the z midplane of a specified attribute in the Field3D class.
+        Plots the z midplane of a specified attribute in the Field class.
     
         Description:
         ------------
-        This method plots the z midplane of a specified attribute in the Field3D class. It verifies 
+        This method plots the z midplane of a specified attribute in the Field class. It verifies 
         if the attribute is valid, and then uses the built in function contour_plot to generate 
         the plot.
     
@@ -3160,11 +3160,11 @@ class Field3D():
                         show=True,
                         ):
         """
-        Plots the specified midplane of a scalar attribute of the Field3D class.
+        Plots the specified midplane of a scalar attribute of the Field class.
     
         Description:
         ------------
-        This method plots a midplane of a specified attribute in the Field3D class. It verifies 
+        This method plots a midplane of a specified attribute in the Field class. It verifies 
         if the attribute is valid, and then uses the built in function contour_plot to generate 
         the plot.
     
@@ -3284,7 +3284,7 @@ class Field3D():
             Number of top reactions to plot. Default is 4
         plane : str, optional
             Plane attribute to extract from API fields. Default is 'z_midplane'
-            Other options depend on your Field3D implementation (e.g., 'x_midplane', 'y_midplane')
+            Other options depend on your Field implementation (e.g., 'x_midplane', 'y_midplane')
         vmin : float, optional
             Minimum value for colorbar. If None, uses global minimum of fields
         vmax : float, optional
@@ -3315,7 +3315,7 @@ class Field3D():
         
         Example:
         --------
-        >>> field = ap.Field3D('DNS_DATA_2d_cut_cut')
+        >>> field = ap.Field('DNS_DATA_2d_cut_cut')
         >>> fig, axes, top_rxns = field.plot_api(api_type="TSR", n=4, 
         ...                                       vmin=-1, vmax=1, 
         ...                                       save_path="APIs_TSR.png")
@@ -3477,7 +3477,7 @@ class Field3D():
         
         This method checks the existence of files corresponding to the attribute paths in the data path.
         If a file exists for an attribute and it was not present before, it initializes a new attribute
-        in the class using Scalar3D with the file path. If verbose is True, it prints the new attributes
+        in the class using Scalar with the file path. If verbose is True, it prints the new attributes
         initialized and the existing attributes with their paths.
     
         Parameters:
@@ -3511,7 +3511,7 @@ class Field3D():
         for attribute_name, path, is_new in zip(self.attr_list, self.paths_list, new_list):
             file_name = os.path.basename(path)
             if (file_name in files_in_folder) and is_new:
-                x = Scalar3D(self.shape, path=path)
+                x = Scalar(self.shape, path=path)
                 setattr(self, attribute_name, x)
                 del x
             if (file_name not in files_in_folder) and hasattr(self, attribute_name):
@@ -3552,9 +3552,9 @@ class Field3D():
         return
     
 ###############################################################################
-#                                Scalar3D
+#                                Scalar
 ###############################################################################
-class Scalar3D:
+class Scalar:
     """
     A class representing a 3D scalar field.
 
@@ -3570,7 +3570,7 @@ class Scalar3D:
     Methods:
     --------
     __init__(shape, value=None, path=''):
-        Initializes a Scalar3D object.
+        Initializes a Scalar object.
     value
         Getter and setter for the value attribute.
     shape
@@ -3626,7 +3626,7 @@ class Scalar3D:
     
     def __init__(self, shape, value=None, path=''):
         """
-        Initializes a Scalar3D object.
+        Initializes a Scalar object.
 
         Parameters:
         -----------
@@ -3640,7 +3640,7 @@ class Scalar3D:
         """
         # check that the shape of the field is a list of 3 integers
         valid_shape =  False
-        if isinstance(shape, list) and len(shape)==Scalar3D.__scalar_dimension:
+        if isinstance(shape, list) and len(shape)==Scalar.__scalar_dimension:
             for item in shape:
                 if isinstance(item, int):
                     valid_shape =  True
@@ -3662,22 +3662,22 @@ class Scalar3D:
         return repr(self._3D)
     
     def __lt__(self, value):
-        return Scalar3D(shape=self.shape, value=self._3D < value)
+        return Scalar(shape=self.shape, value=self._3D < value)
     
     def __le__(self, value):
-        return Scalar3D(shape=self.shape, value=self._3D <= value)
+        return Scalar(shape=self.shape, value=self._3D <= value)
     
     def __gt__(self, value):
-        return Scalar3D(shape=self.shape, value=self._3D > value)
+        return Scalar(shape=self.shape, value=self._3D > value)
     
     def __ge__(self, value):
-        return Scalar3D(shape=self.shape, value=self._3D >= value)
+        return Scalar(shape=self.shape, value=self._3D >= value)
     
     def __eq__(self, value):
-        return Scalar3D(shape=self.shape, value=self._3D == value)
+        return Scalar(shape=self.shape, value=self._3D == value)
     
     def __ne__(self, value):
-        return Scalar3D(shape=self.shape, value=self._3D != value)
+        return Scalar(shape=self.shape, value=self._3D != value)
     
     def __bool__(self):
         if self._3D==True:
@@ -3686,82 +3686,82 @@ class Scalar3D:
             return False
         
     def __neg__(self):
-        return Scalar3D(shape=self.shape, value=-self._3D)
+        return Scalar(shape=self.shape, value=-self._3D)
     
     def __pos__(self):
-        return Scalar3D(shape=self.shape, value=+self._3D)
+        return Scalar(shape=self.shape, value=+self._3D)
     
     def __abs__(self):
-        return Scalar3D(shape=self.shape, value=np.abs(self._3D))
+        return Scalar(shape=self.shape, value=np.abs(self._3D))
     
     def __add__(self, value):
-        if isinstance(value, Scalar3D):
-            return Scalar3D(shape=self.shape, value=self._3D+value._3D)
+        if isinstance(value, Scalar):
+            return Scalar(shape=self.shape, value=self._3D+value._3D)
         else:
-            return Scalar3D(shape=self.shape, value=self._3D+value)
+            return Scalar(shape=self.shape, value=self._3D+value)
         
     def __sub__(self, value):
-        if isinstance(value, Scalar3D):
-            return Scalar3D(shape=self.shape, value=self._3D-value._3D)
+        if isinstance(value, Scalar):
+            return Scalar(shape=self.shape, value=self._3D-value._3D)
         else:
-            return Scalar3D(shape=self.shape, value=self._3D-value)
+            return Scalar(shape=self.shape, value=self._3D-value)
         
     def __mul__(self, value):
-        if isinstance(value, Scalar3D):
-            return Scalar3D(shape=self.shape, value=self._3D*value._3D)
+        if isinstance(value, Scalar):
+            return Scalar(shape=self.shape, value=self._3D*value._3D)
         else:
-            return Scalar3D(shape=self.shape, value=self._3D*value)
+            return Scalar(shape=self.shape, value=self._3D*value)
         
     def __truediv__(self, value):
-        if isinstance(value, Scalar3D):
-            return Scalar3D(shape=self.shape, value=self._3D/value._3D)
+        if isinstance(value, Scalar):
+            return Scalar(shape=self.shape, value=self._3D/value._3D)
         else:
-            return Scalar3D(shape=self.shape, value=self._3D/value)
+            return Scalar(shape=self.shape, value=self._3D/value)
         
     def __floordiv__(self, value):
-        if isinstance(value, Scalar3D):
-            return Scalar3D(shape=self.shape, value=self._3D//value._3D)
+        if isinstance(value, Scalar):
+            return Scalar(shape=self.shape, value=self._3D//value._3D)
         else:
-            return Scalar3D(shape=self.shape, value=self._3D//value)
+            return Scalar(shape=self.shape, value=self._3D//value)
         
     def __mod__(self, value):
-        if isinstance(value, Scalar3D):
-            return Scalar3D(shape=self.shape, value=self._3D%value._3D)
+        if isinstance(value, Scalar):
+            return Scalar(shape=self.shape, value=self._3D%value._3D)
         else:
-            return Scalar3D(shape=self.shape, value=self._3D%value)
+            return Scalar(shape=self.shape, value=self._3D%value)
         
     def __divmod__(self, value):
-        if isinstance(value, Scalar3D):
-            return Scalar3D(shape=self.shape, value=divmod(self._3D,value._3D))
+        if isinstance(value, Scalar):
+            return Scalar(shape=self.shape, value=divmod(self._3D,value._3D))
         else:
-            return Scalar3D(shape=self.shape, value=divmod(self._3D,value))
+            return Scalar(shape=self.shape, value=divmod(self._3D,value))
     
     def __pow__(self, value, mod=None):
-        return Scalar3D(shape=self.shape, value=pow(self._3D, value, mod))
+        return Scalar(shape=self.shape, value=pow(self._3D, value, mod))
     
     def __and__(self, value):
-        if isinstance(value, Scalar3D):
-            return Scalar3D(shape=self.shape, value=self._3D&value._3D)
+        if isinstance(value, Scalar):
+            return Scalar(shape=self.shape, value=self._3D&value._3D)
         else:
-            return Scalar3D(shape=self.shape, value=self._3D&value)
+            return Scalar(shape=self.shape, value=self._3D&value)
     
     def __or__(self, value):
-        if isinstance(value, Scalar3D):
-            return Scalar3D(shape=self.shape, value=self._3D|value._3D)
+        if isinstance(value, Scalar):
+            return Scalar(shape=self.shape, value=self._3D|value._3D)
         else:
-            return Scalar3D(shape=self.shape, value=self._3D|value)
+            return Scalar(shape=self.shape, value=self._3D|value)
     
     def __xor__(self, value):
-        if isinstance(value, Scalar3D):
-            return Scalar3D(shape=self.shape, value=self._3D^value._3D)
+        if isinstance(value, Scalar):
+            return Scalar(shape=self.shape, value=self._3D^value._3D)
         else:
-            return Scalar3D(shape=self.shape, value=self._3D^value)
+            return Scalar(shape=self.shape, value=self._3D^value)
     
     def __matmul__(self, value):
-        if isinstance(value, Scalar3D):
-            return Scalar3D(shape=self.shape, value=self._3D@value._3D)
+        if isinstance(value, Scalar):
+            return Scalar(shape=self.shape, value=self._3D@value._3D)
         else:
-            return Scalar3D(shape=self.shape, value=self._3D@value)
+            return Scalar(shape=self.shape, value=self._3D@value)
         
     def __len__(self):
         return len(self._3D)
@@ -3771,20 +3771,20 @@ class Scalar3D:
     
     def __setitem__(self, key, value):
         if self.is_light_mode():
-            raise ValueError('Item setting is not allowed using the Scalar3D object in light mode.\n Edit the source file instead')
+            raise ValueError('Item setting is not allowed using the Scalar object in light mode.\n Edit the source file instead')
         else:
             temp = self._3D
             temp[key] = value
             self.value = temp
             
     def __str__(self):
-        return f"Scalar3D object properties:\n- shape: {self.shape}\n- light_mode: {self.is_light_mode()} \n- path: '{self.path}'"
+        return f"Scalar object properties:\n- shape: {self.shape}\n- light_mode: {self.is_light_mode()} \n- path: '{self.path}'"
     
     # The value attribute contains the array with the values of the field.
     # By default it is reshaped in a 3d array
     @property
     def value(self):
-        # if Scalar3D.test_phase is True:
+        # if Scalar.test_phase is True:
         #     print("Getting scalar field...")
         if self._value is not None:
             # print("value assigned to the variable. returning the field in memory")
@@ -3794,7 +3794,7 @@ class Scalar3D:
                 # print("Value not assigned, reading the file")
                 return process_file(self.path)
             else:
-                raise ValueError("To call the value of a Scalar3D object, you must specify either the value or the file path")    
+                raise ValueError("To call the value of a Scalar object, you must specify either the value or the file path")    
     @value.setter
     def value(self, value):
         # assign value
@@ -3812,7 +3812,7 @@ class Scalar3D:
     def shape(self, shape):
         # Check that the shape has the correct format
         valid_shape =  False
-        if isinstance(shape, list) and len(shape)==Scalar3D.__scalar_dimension:
+        if isinstance(shape, list) and len(shape)==Scalar.__scalar_dimension:
             for item in shape:
                 if not isinstance(item, int):
                     valid_shape =  True
@@ -3952,7 +3952,7 @@ class Scalar3D:
             if self.path != '':
                 return True
             else:
-                raise ValueError("To call the value of a Scalar3D object, you must specify either the value or the file path")    
+                raise ValueError("To call the value of a Scalar object, you must specify either the value or the file path")    
     
     def lenght(self):
         return self.shape[0] * self.shape[1] * self.shape[2]
@@ -4026,7 +4026,7 @@ class Scalar3D:
         Example:
         --------
         >>> # Example of cutting a scalar field
-        >>> field = Scalar3D(shape=[10, 10, 10], value=np.random.rand(10, 10, 10))
+        >>> field = Scalar(shape=[10, 10, 10], value=np.random.rand(10, 10, 10))
         >>> # Cut the field with equal number of samples removed from each side
         >>> cut_field_equal = field.cut(n_cut=2, mode='equal')
         >>> print("Cut field with equal mode:")
@@ -4166,8 +4166,8 @@ class Scalar3D:
         None
     
         """
-        if not isinstance(mesh, Mesh3D):
-            raise ValueError("mesh must be an object of the class Mesh3D")
+        if not isinstance(mesh, Mesh):
+            raise ValueError("mesh must be an object of the class Mesh")
         
         y_mid = mesh.shape[2]//2
 
@@ -4210,8 +4210,8 @@ class Scalar3D:
         None
     
         """
-        if not isinstance(mesh, Mesh3D):
-            raise ValueError("mesh must be an object of the class Mesh3D")
+        if not isinstance(mesh, Mesh):
+            raise ValueError("mesh must be an object of the class Mesh")
         
         z_mid = mesh.shape[2]//2
         
@@ -4227,12 +4227,12 @@ class Scalar3D:
         plt.title(title, fontsize=22)
         plt.show()       
   
-class Mesh3D:
+class Mesh:
     """
     A class used to represent a 3D mesh.
 
-    This class takes three Scalar3D objects representing the X, Y, and Z coordinates of a 3D mesh.
-    It checks that the input objects are instances of the Scalar3D class and have the same shape.
+    This class takes three Scalar objects representing the X, Y, and Z coordinates of a 3D mesh.
+    It checks that the input objects are instances of the Scalar class and have the same shape.
     The shape of the mesh is expected to be a list of three integers.
     The class also provides properties to access the unique values of the X, Y, and Z coordinates and their 3D representations.
     It also provides properties to access the X, Y, and Z coordinates at the midpoints along each axis.
@@ -4251,13 +4251,13 @@ class Mesh3D:
     Nz : int
         The size of the mesh along the Z axis.
         
-    X : Scalar3D
+    X : Scalar
         The X coordinates of the mesh.
         
-    Y : Scalar3D 
+    Y : Scalar 
         The Y coordinates of the mesh.
         
-    Z : Scalar3D 
+    Z : Scalar 
         The Z coordinates of the mesh.
 
     Methods:
@@ -4305,43 +4305,43 @@ class Mesh3D:
     
     def __init__(self, X, Y, Z):
         """
-        Initializes a Mesh3D object.
+        Initializes a Mesh object.
     
         Parameters:
         -----------
-        X : Scalar3D
+        X : Scalar
             The X coordinates of the mesh.
             
-        Y : Scalar3D 
+        Y : Scalar 
             The Y coordinates of the mesh.
             
-        Z : Scalar3D 
+        Z : Scalar 
             The Z coordinates of the mesh.
         
         Raises:
         -------
         TypeError:
-            If X, Y, or Z are not instances of the Scalar3D class.
+            If X, Y, or Z are not instances of the Scalar class.
         ValueError:
             If X, Y, and Z do not have the same dimensions.
         """
-        # check that X, Y and Z are Scalar3D objects
-        if not isinstance(X, Scalar3D):
-            raise TypeError("X must be an object of the class Scalar3D")
-        if not isinstance(Y, Scalar3D):
-            raise TypeError("X must be an object of the class Scalar3D")
-        if not isinstance(Z, Scalar3D):
-            raise TypeError("Z must be an object of the class Scalar3D")
+        # check that X, Y and Z are Scalar objects
+        if not isinstance(X, Scalar):
+            raise TypeError("X must be an object of the class Scalar")
+        if not isinstance(Y, Scalar):
+            raise TypeError("X must be an object of the class Scalar")
+        if not isinstance(Z, Scalar):
+            raise TypeError("Z must be an object of the class Scalar")
             
         # check that X, Y and Z have the same dimensions
         if not check_same_shape(X, Y, Z):
-            raise ValueError("Z must be an object of the class Scalar3D")
+            raise ValueError("Z must be an object of the class Scalar")
         
         shape = X.shape
         
         # check that the shape of the field is a list of 3 integers
         valid_shape =  False
-        if isinstance(shape, list) and len(shape)==Mesh3D.__scalar_dimension:
+        if isinstance(shape, list) and len(shape)==Mesh.__scalar_dimension:
             for item in shape:
                 if not isinstance(item, int):
                     valid_shape =  True
@@ -4439,7 +4439,7 @@ def add_variable(attribute_name, file_name, species=False, models=None, tensor=F
     
     # TODO: Check in general that the files have the correct form
     
-    Field3D.variables[attribute_name] = [file_name, species, models, tensor, reactions, description]
+    Field.variables[attribute_name] = [file_name, species, models, tensor, reactions, description]
     
     return
 

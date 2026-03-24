@@ -26,9 +26,9 @@ from .DNS import (
                  gradient_x, 
                  gradient_y, 
                  gradient_z,
-                 Field3D,
-                 Scalar3D,
-                 Mesh3D
+                 Field,
+                 Scalar,
+                 Mesh
                  )
 
 # Import plot utilities
