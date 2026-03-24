@@ -8,7 +8,7 @@ Created on Fri May 24 14:50:44 2024
 
 import os
 import aPriori as ap
-from aPriori.DNS import Field3D
+from aPriori.DNS import Field
 
 # Uncomment the following line if you did not download the dataset yet
 # ap.download(dataset='h2_lifted')
@@ -22,7 +22,7 @@ if not os.path.exists(T_path):
     ap.download(dataset='h2_lifted')
 
 # Initialize the DNS field
-DNS_field = Field3D(directory)
+DNS_field = Field(directory)
 
 # Compute the reaction rates
 DNS_field.compute_reaction_rates()
@@ -34,7 +34,7 @@ DNS_field.compute_strain_rate(save_tensor=False)
 filter_size = 16
 
 # filter DNS field and initialize filtered field
-filtered_field = Field3D(DNS_field.filter_favre(filter_size))
+filtered_field = Field(DNS_field.filter_favre(filter_size))
 
 # compute the reaction rates on the filtered field
 filtered_field.compute_reaction_rates()

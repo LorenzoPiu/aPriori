@@ -1,7 +1,7 @@
-aPriori.DNS.Scalar3D
-====================
+aPriori.DNS.Scalar
+==================
 
-.. py:class:: aPriori.DNS.Scalar3D(shape, value=None, path='')
+.. py:class:: aPriori.DNS.Scalar(shape, value=None, path='')
 
    A class representing a 3D scalar field.
 
@@ -17,7 +17,7 @@ aPriori.DNS.Scalar3D
    Methods:
    --------
    __init__(shape, value=None, path=''):
-       Initializes a Scalar3D object.
+       Initializes a Scalar object.
    value
        Getter and setter for the value attribute.
    shape
@@ -195,7 +195,7 @@ aPriori.DNS.Scalar3D
               Example:
               --------
               >>> # Example of cutting a scalar field
-              >>> field = Scalar3D(shape=[10, 10, 10], value=np.random.rand(10, 10, 10))
+              >>> field = Scalar(shape=[10, 10, 10], value=np.random.rand(10, 10, 10))
               >>> # Cut the field with equal number of samples removed from each side
               >>> cut_field_equal = field.cut(n_cut=2, mode='equal')
               >>> print("Cut field with equal mode:")

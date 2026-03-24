@@ -8,9 +8,9 @@ aPriori.derivatives.laplacian
    Computes the Laplacian (d2/dx2 + d2/dy2 + d2/dz2) of the field.
 
    :param F:
-   :type F: Scalar3D object
+   :type F: Scalar object
    :param mesh:
-   :type mesh: Mesh3D object
+   :type mesh: Mesh object
    :param filter_size:
    :type filter_size: int, optional
    :param acc:

@@ -12,7 +12,7 @@ import aPriori as ap
 ap.download(dataset='h2_lifted')
 
 # Initialize 3D DNS field
-field_DNS = ap.Field3D('Lifted_H2_subdomain')
+field_DNS = ap.Field('Lifted_H2_subdomain')
 
 #----------------------------Visualize the dataset-----------------------------
 
@@ -87,7 +87,7 @@ f_string = field_DNS.filter_favre(filter_size=16, # filter amplitude
                                         filter_type='Gauss') # 'Gauss' or 'Box'
 
 # The string with the folder's name is now used to initialize the filered field
-field_filtered = ap.Field3D(f_string)
+field_filtered = ap.Field(f_string)
 
 # Visualize the effect of filtering on the Heat Release Rate
 field_DNS.plot_z_midplane('HRR_DNS',

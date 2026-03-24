@@ -7,7 +7,7 @@ Created on Fri May 24 12:00:20 2024
 """
 
 import aPriori.DNS as DNS
-from aPriori.DNS import Scalar3D
+from aPriori.DNS import Scalar
 import numpy as np
 
 shape = [4, 2, 4]
@@ -32,8 +32,8 @@ with open(os.path.join(directory,'info.json'), 'r') as file:
     info = json.load(file)
 DNS_shape = info['global']['Nxyz']
     
-# Now we have the shape and the path of the file, we can define the Scalar3D object:
-T = Scalar3D(shape=DNS_shape, path=T_path)
+# Now we have the shape and the path of the file, we can define the Scalar object:
+T = Scalar(shape=DNS_shape, path=T_path)
 # Try to access the value of the temperature field:
 print("Temperature value in the cells 5:8, 5:8, 5:8")
 print(T._3D[5:8, 5:8, 5:8])

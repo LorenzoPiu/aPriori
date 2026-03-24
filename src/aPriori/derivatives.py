@@ -5,11 +5,11 @@
 """
 
 __authors__ = "Lorenzo Piu"
-__copyright__ = "Copyright (c) 2024-2025, Lorenzo Piu, Heinz Pitsch, and Alessandro Parente"
+__copyright__ = "Copyright (c) 2024-2026, Lorenzo Piu, Heinz Pitsch, and Alessandro Parente"
 __credits__ = ["Aero-Thermo-Mechanics laboratories - Universite Libre de Bruxelles, Brussels, Belgium"
                "Institut für Technische Verbrennung (ITV) - RWTH Aachen University, Aachen, Germany"]
 __license__ = "GPL 3.0"
-__version__ = "1.2.3"
+__version__ = "1.3.0"
 __maintainer__ = ["Lorenzo Piu"]
 __email__ = ["lorenzo.piu@ulb.be"]
 __status__ = "Production"
@@ -17,8 +17,8 @@ __status__ = "Production"
 
 import numpy as np
 from findiff import FinDiff
-from .DNS import Scalar3D
-from .DNS import Mesh3D
+from .DNS import Scalar
+from .DNS import Mesh
 
 
 _DEFAULT_DERIVATIVES_ORDER = 4
@@ -99,9 +99,9 @@ def gradient_x(F, mesh, filter_size=1, acc=8, reduce_acc=False):
 
     Parameters
     ----------
-    F : Scalar3D object
+    F : Scalar object
         The field to differentiate.
-    mesh : Mesh3D object
+    mesh : Mesh object
         The mesh object containing coordinates (X1D).
     filter_size : int, optional
         The stride used to filter the field (default is 1).
@@ -114,12 +114,12 @@ def gradient_x(F, mesh, filter_size=1, acc=8, reduce_acc=False):
         The x component of the gradient.
     '''
     # 1. Type Checking
-    # Note: Assuming Scalar3D/Mesh3D names are available in the namespace. 
-    # If not imported, use F.__class__.__name__ == 'Scalar3D' or similar.
-    if type(F).__name__ != 'Scalar3D':
-        raise TypeError("F must be an object of the class Scalar3D")
-    if type(mesh).__name__ != 'Mesh3D':
-        raise TypeError("mesh must be an object of the class Mesh3D")
+    # Note: Assuming Scalar/Mesh names are available in the namespace. 
+    # If not imported, use F.__class__.__name__ == 'Scalar' or similar.
+    if type(F).__name__ != 'Scalar':
+        raise TypeError("F must be an object of the class Scalar")
+    if type(mesh).__name__ != 'Mesh':
+        raise TypeError("mesh must be an object of the class Mesh")
     if not isinstance(filter_size, int):
         raise TypeError("filter_size must be an integer")
     if not isinstance(acc, int):
@@ -145,10 +145,10 @@ def gradient_y(F, mesh, filter_size=1, acc=8, reduce_acc=False):
     -----------
     Computes the y-component of the gradient using findiff.
     '''
-    if type(F).__name__ != 'Scalar3D':
-        raise TypeError("F must be an object of the class Scalar3D")
-    if type(mesh).__name__ != 'Mesh3D':
-        raise TypeError("mesh must be an object of the class Mesh3D")
+    if type(F).__name__ != 'Scalar':
+        raise TypeError("F must be an object of the class Scalar")
+    if type(mesh).__name__ != 'Mesh':
+        raise TypeError("mesh must be an object of the class Mesh")
     if not isinstance(acc, int):
         raise TypeError("acc must be an integer")
     
@@ -171,10 +171,10 @@ def gradient_z(F, mesh, filter_size=1, acc=8, reduce_acc=False):
     -----------
     Computes the z-component of the gradient using findiff.
     '''
-    if type(F).__name__ != 'Scalar3D':
-        raise TypeError("F must be an object of the class Scalar3D")
-    if type(mesh).__name__ != 'Mesh3D':
-        raise TypeError("mesh must be an object of the class Mesh3D")
+    if type(F).__name__ != 'Scalar':
+        raise TypeError("F must be an object of the class Scalar")
+    if type(mesh).__name__ != 'Mesh':
+        raise TypeError("mesh must be an object of the class Mesh")
     if not isinstance(acc, int):
         raise TypeError("acc must be an integer")
     
@@ -199,8 +199,8 @@ def laplacian(F, mesh, filter_size=1, acc=4, reduce_acc=False):
     
     Parameters
     ----------
-    F : Scalar3D object
-    mesh : Mesh3D object
+    F : Scalar object
+    mesh : Mesh object
     filter_size : int, optional
     acc : int, optional
 
@@ -209,10 +209,10 @@ def laplacian(F, mesh, filter_size=1, acc=4, reduce_acc=False):
     lap : numpy array
         The Laplacian of the input field.
     '''
-    if type(F).__name__ != 'Scalar3D':
-        raise TypeError("F must be an object of the class Scalar3D")
-    if type(mesh).__name__ != 'Mesh3D':
-        raise TypeError("mesh must be an object of the class Mesh3D")
+    if type(F).__name__ != 'Scalar':
+        raise TypeError("F must be an object of the class Scalar")
+    if type(mesh).__name__ != 'Mesh':
+        raise TypeError("mesh must be an object of the class Mesh")
     
     if reduce_acc:
         acc = 2

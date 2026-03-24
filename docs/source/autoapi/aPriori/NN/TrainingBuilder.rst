@@ -12,7 +12,7 @@ aPriori.NN.TrainingBuilder
    A dictionary-like class that builds and manages a collection of VectorScaler instances for training purposes.
 
    This class includes methods to add, configure, and save/load multiple VectorScaler objects,
-   and allows batch scaling of data based on a specified Field3D input.
+   and allows batch scaling of data based on a specified Field input.
 
    Attributes:
    -----------
@@ -33,10 +33,10 @@ aPriori.NN.TrainingBuilder
            Add a new VectorScaler to the TrainingBuilder.
 
        - build_x(field):
-           Construct a feature matrix by transforming data from a Field3D instance.
+           Construct a feature matrix by transforming data from a Field instance.
 
        - fit(field):
-           Fit each VectorScaler in the TrainingBuilder to the corresponding data in the Field3D.
+           Fit each VectorScaler in the TrainingBuilder to the corresponding data in the Field.
 
        - load(file_path):
            Load the state of each scaler from a JSON file and reinitialize the TrainingBuilder.
@@ -92,11 +92,11 @@ aPriori.NN.TrainingBuilder
 
    .. py:method:: build_x(field)
 
-      Construct a feature matrix by transforming data from a Field3D instance.
+      Construct a feature matrix by transforming data from a Field instance.
 
       Parameters:
       -----------
-          - field (Field3D): The input field containing data to scale.
+          - field (Field): The input field containing data to scale.
 
       Returns:
       --------
@@ -105,17 +105,17 @@ aPriori.NN.TrainingBuilder
 
       Raises:
       -------
-          - KeyError: If the field is not an instance of Field3D.
+          - KeyError: If the field is not an instance of Field.
 
 
 
    .. py:method:: fit(field)
 
-      Fit each VectorScaler in the TrainingBuilder to the corresponding data in the Field3D or list of Field3D objects.
+      Fit each VectorScaler in the TrainingBuilder to the corresponding data in the Field or list of Field objects.
 
       Parameters:
       -----------
-          - field (Field3D or list of Field3D): The field(s) with data to fit each scaler.
+          - field (Field or list of Field): The field(s) with data to fit each scaler.
 
 
 

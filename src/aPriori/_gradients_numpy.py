@@ -14,10 +14,10 @@
 
 #         Parameters
 #         ----------
-#         Ur : Scalar3D object
+#         Ur : Scalar object
 #             Is the field to filter.
         
-#         mesh : Mesh3D object
+#         mesh : Mesh object
 #             Is the mesh object used to compute the derivatives.
             
 #         filter_size : int
@@ -33,10 +33,10 @@
 #         '''
 #     import time
 #     # Check the data types of the input
-#     if not isinstance(mesh, Mesh3D):
-#         raise TypeError("mesh must be an object of the class Mesh3D")
-#     if not isinstance(F, Scalar3D):
-#         raise TypeError("F must be an object of the class Scalar3D")
+#     if not isinstance(mesh, Mesh):
+#         raise TypeError("mesh must be an object of the class Mesh")
+#     if not isinstance(F, Scalar):
+#         raise TypeError("F must be an object of the class Scalar")
 #     if not isinstance(filter_size, int):
 #         raise TypeError("filter_size must be an integer")
 #     Nx = F.Nx
@@ -61,10 +61,10 @@
 
 #         Parameters
 #         ----------
-#         Ur : Scalar3D object
+#         Ur : Scalar object
 #             Is the field to filter.
         
-#         mesh : Mesh3D object
+#         mesh : Mesh object
 #             Is the mesh object used to compute the derivatives.
             
 #         filter_size : int
@@ -80,10 +80,10 @@
 #         '''
 #     import time
 #     # Check the data types of the input
-#     if not isinstance(mesh, Mesh3D):
-#         raise TypeError("mesh must be an object of the class Mesh3D")
-#     if not isinstance(F, Scalar3D):
-#         raise TypeError("F must be an object of the class Scalar3D")
+#     if not isinstance(mesh, Mesh):
+#         raise TypeError("mesh must be an object of the class Mesh")
+#     if not isinstance(F, Scalar):
+#         raise TypeError("F must be an object of the class Scalar")
 #     if not isinstance(filter_size, int):
 #         raise TypeError("filter_size must be an integer")
 #     Nx = F.Nx
@@ -110,10 +110,10 @@
 
 #         Parameters
 #         ----------
-#         Ur : Scalar3D object
+#         Ur : Scalar object
 #             Is the field to filter.
         
-#         mesh : Mesh3D object
+#         mesh : Mesh object
 #             Is the mesh object used to compute the derivatives.
             
 #         filter_size : int
@@ -126,10 +126,10 @@
 #         '''
 #     import time
 #     # Check the data types of the input
-#     if not isinstance(mesh, Mesh3D):
-#         raise TypeError("mesh must be an object of the class Mesh3D")
-#     if not isinstance(F, Scalar3D):
-#         raise TypeError("F must be an object of the class Scalar3D")
+#     if not isinstance(mesh, Mesh):
+#         raise TypeError("mesh must be an object of the class Mesh")
+#     if not isinstance(F, Scalar):
+#         raise TypeError("F must be an object of the class Scalar")
 #     if not isinstance(filter_size, int):
 #         raise TypeError("filter_size must be an integer")
 #     Nx = F.Nx

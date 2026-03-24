@@ -1,14 +1,14 @@
-aPriori.Field3D
-===============
+aPriori.Field
+=============
 
-.. py:class:: aPriori.Field3D(folder_path, reactive=True, verbose=True)
+.. py:class:: aPriori.Field(folder_path, reactive=True, verbose=True)
 
    Class representing a 3D field with various attributes and methods for visualization and data management.
 
    Description:
    ------------
 
-   The `Field3D` class encapsulates a 3D field used in DNS, allowing for
+   The `Field` class encapsulates a 3D field used in DNS, allowing for
    operations such as data loading, filtering, and accessing various properties
    of the field. This class is central to handling the volumetric data in
    computational fluid dynamics simulations.
@@ -22,8 +22,8 @@ aPriori.Field3D
    variables : dict
        Dictionary containing variable names and their corresponding settings.
 
-   mesh : Mesh3D object
-       Object containing the mesh. See the class Mesh3D for more information
+   mesh : Mesh object
+       Object containing the mesh. See the class Mesh for more information
 
    __field_dimension : int
        Dimensionality of the field, always set to 3
@@ -35,9 +35,9 @@ aPriori.Field3D
    __init__(self, folder_path):
        Constructor method to initialize a 3D field object.
 
-       dynamic attributes : Scalar3D objects
+       dynamic attributes : Scalar objects
        depending on the files contained in the main folder folder_path,
-       initializes various attributes as Scalar3D objects.
+       initializes various attributes as Scalar objects.
        Example :
        Field attributes :
        +-------------+---------------------------------------------------------+
@@ -74,7 +74,7 @@ aPriori.Field3D
        Build lists of attribute names and corresponding file paths based on the configuration specified in variables_list.
 
    check_valid_attribute(self, input_attribute):
-       check if the input attribute is assigned to the Field3D object.
+       check if the input attribute is assigned to the Field object.
 
    compute_chemical_timescale(self, mode='SFR', verbose=False):
        Computes the chemical timescale for the field, useful in Partially Stirred Reactor (PaSR) modeling.
@@ -377,7 +377,7 @@ aPriori.Field3D
 
       Example:
       --------
-      >>> filtered_field = Field3D('path/to/filtered/data')
+      >>> filtered_field = Field('path/to/filtered/data')
       >>> filtered_field.DNS_folder_path = 'path/to/unfiltered/DNS/data'
       >>> filtered_field.compute_M(verbose=True)
 
@@ -433,7 +433,7 @@ aPriori.Field3D
 
               Example:
               --------
-              >>> field = Field3D('your_folder_path')
+              >>> field = Field('your_folder_path')
               >>> field.compute_mixing_timescale(mode='Kolmo')
 
 
@@ -701,7 +701,7 @@ aPriori.Field3D
       Raises:
       -------
       TypeError:
-          If U, V, W are not instances of Scalar3D or if mesh is not an instance of Mesh3D.
+          If U, V, W are not instances of Scalar or if mesh is not an instance of Mesh.
       ValueError:
           If U, V, W and mesh do not have the same shape.
 
@@ -721,7 +721,7 @@ aPriori.Field3D
 
       Example:
       --------
-      >>> field = Field3D('your_folder_path')
+      >>> field = Field('your_folder_path')
       >>> field.compute_strain_rate(save_derivatives=True, save_tensor=True, verbose=True)
 
 
@@ -1037,11 +1037,11 @@ aPriori.Field3D
 
    .. py:method:: plot_x_midplane(attribute, log=False, colormap='viridis', cbar_title=None, cbar_shrink=0.7, levels=None, color='black', labels=False, linestyle='-', linecolor='black', linewidth=1, x_ticks=None, y_ticks=None, x_lim=None, y_lim=None, vmin=None, vmax=None, transparent=True, title=None, x_name='y [mm]', y_name='z [mm]', remove_cbar=False, remove_x=False, remove_y=False, transpose=False, save=False, show=True)
 
-      Plots the x midplane of a specified attribute in the Field3D class.
+      Plots the x midplane of a specified attribute in the Field class.
 
       Description:
       ------------
-      This method plots the x midplane of a specified attribute in the Field3D class. It verifies
+      This method plots the x midplane of a specified attribute in the Field class. It verifies
       if the attribute is valid, and then uses the built in function contour_plot to generate
       the plot.
 
@@ -1064,11 +1064,11 @@ aPriori.Field3D
 
    .. py:method:: plot_y_midplane(attribute, log=False, colormap='viridis', cbar_title=None, cbar_shrink=0.7, levels=None, color='black', labels=False, linestyle='-', linecolor='black', linewidth=1, x_ticks=None, y_ticks=None, x_lim=None, y_lim=None, vmin=None, vmax=None, transparent=True, title=None, x_name='x [mm]', y_name='z [mm]', remove_cbar=False, remove_x=False, remove_y=False, transpose=False, save=False, show=True)
 
-      Plots the y midplane of a specified attribute in the Field3D class.
+      Plots the y midplane of a specified attribute in the Field class.
 
       Description:
       ------------
-      This method plots the z midplane of a specified attribute in the Field3D class. It verifies
+      This method plots the z midplane of a specified attribute in the Field class. It verifies
       if the attribute is valid, and then uses the built in function contour_plot to generate
       the plot.
 
@@ -1091,11 +1091,11 @@ aPriori.Field3D
 
    .. py:method:: plot_z_midplane(attribute, log=False, colormap='viridis', cbar_title=None, cbar_shrink=0.7, levels=None, color='black', labels=False, linestyle='-', linecolor='black', linewidth=1, x_ticks=None, y_ticks=None, x_lim=None, y_lim=None, vmin=None, vmax=None, transparent=True, title=None, x_name=None, y_name=None, remove_cbar=False, remove_x=False, remove_y=False, remove_title=False, transpose=False, dpi=None, scale='mm', save=False, save_path=None, show=True)
 
-      Plots the z midplane of a specified attribute in the Field3D class.
+      Plots the z midplane of a specified attribute in the Field class.
 
       Description:
       ------------
-      This method plots the z midplane of a specified attribute in the Field3D class. It verifies
+      This method plots the z midplane of a specified attribute in the Field class. It verifies
       if the attribute is valid, and then uses the built in function contour_plot to generate
       the plot.
 
@@ -1118,11 +1118,11 @@ aPriori.Field3D
 
    .. py:method:: plot_midplane(attribute, plane='z', log=False, colormap='viridis', cbar_title=None, cbar_shrink=0.7, levels=None, color='black', labels=False, linestyle='-', linecolor='black', linewidth=1, x_ticks=None, y_ticks=None, x_lim=None, y_lim=None, vmin=None, vmax=None, transparent=True, title=None, x_name=None, y_name=None, remove_cbar=False, remove_x=False, remove_y=False, remove_title=False, transpose=False, dpi=None, scale='mm', save=False, save_path=None, show=True)
 
-      Plots the specified midplane of a scalar attribute of the Field3D class.
+      Plots the specified midplane of a scalar attribute of the Field class.
 
       Description:
       ------------
-      This method plots a midplane of a specified attribute in the Field3D class. It verifies
+      This method plots a midplane of a specified attribute in the Field class. It verifies
       if the attribute is valid, and then uses the built in function contour_plot to generate
       the plot.
 
@@ -1159,7 +1159,7 @@ aPriori.Field3D
           Number of top reactions to plot. Default is 4
       plane : str, optional
           Plane attribute to extract from API fields. Default is 'z_midplane'
-          Other options depend on your Field3D implementation (e.g., 'x_midplane', 'y_midplane')
+          Other options depend on your Field implementation (e.g., 'x_midplane', 'y_midplane')
       vmin : float, optional
           Minimum value for colorbar. If None, uses global minimum of fields
       vmax : float, optional
@@ -1191,7 +1191,7 @@ aPriori.Field3D
 
       Example:
       --------
-      >>> field = ap.Field3D('DNS_DATA_2d_cut_cut')
+      >>> field = ap.Field('DNS_DATA_2d_cut_cut')
       >>> fig, axes, top_rxns = field.plot_api(api_type="TSR", n=4,
       ...                                       vmin=-1, vmax=1,
       ...                                       save_path="APIs_TSR.png")
@@ -1221,7 +1221,7 @@ aPriori.Field3D
 
       This method checks the existence of files corresponding to the attribute paths in the data path.
       If a file exists for an attribute and it was not present before, it initializes a new attribute
-      in the class using Scalar3D with the file path. If verbose is True, it prints the new attributes
+      in the class using Scalar with the file path. If verbose is True, it prints the new attributes
       initialized and the existing attributes with their paths.
 
       Parameters:

@@ -34,7 +34,7 @@ Import modules and define data path
    :caption: Imports and paths definition
 
    import os
-   from aPriori.DNS import Field3D
+   from aPriori.DNS import Field
    from aPriori import DNS
    import json
 
@@ -55,7 +55,7 @@ Apply Favre filtering
       :caption: Favre filtering with Gaussian and box kernels
 
       # Load the DNS field
-      DNS_field = Field3D(directory)
+      DNS_field = Field(directory)
 
       # Define the filter size (in grid points)
       filter_size = 32
@@ -65,13 +65,13 @@ Apply Favre filtering
           filter_size,
           filter_type='Gauss'
       )
-      DNS_field_filt_gauss = Field3D(field_filt_name)
+      DNS_field_filt_gauss = Field(field_filt_name)
 
       # Apply Favre filtering using a box kernel
       # The box filter can take a long time as the convolution operation is not
       # optimized. If you have any suggestion on how to improve it, please
       # open an issue on the Github page!
-      DNS_field_filt_box = Field3D(
+      DNS_field_filt_box = Field(
           DNS_field.filter_favre(filter_size, filter_type='Box')
       )
 

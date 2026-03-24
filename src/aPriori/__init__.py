@@ -5,10 +5,10 @@ Library initialization and relative imports
 """
 
 __author__ = "Lorenzo Piu"
-__copyright__ = "Copyright (c) 2024-2025, Lorenzo Piu"
+__copyright__ = "Copyright (c) 2024-2026, Lorenzo Piu"
 __credits__ = ["Universite Libre de Bruxelles, Aero-Thermo-Mechanics Laboratory, Brussels, Belgium"]
 __license__ = "GPL 3.0"
-__version__ = "1.2.3"
+__version__ = "1.3.0"
 __maintainer__ = ["Lorenzo Piu"]
 __email__ = ["lorenzo.piu@ulb.be"]
 __status__ = "Production"
@@ -26,9 +26,9 @@ from .DNS import (
                  gradient_x, 
                  gradient_y, 
                  gradient_z,
-                 Field3D,
-                 Scalar3D,
-                 Mesh3D
+                 Field,
+                 Scalar,
+                 Mesh
                  )
 
 # Import plot utilities

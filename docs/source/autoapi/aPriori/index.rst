@@ -27,15 +27,15 @@ Classes
 .. toctree::
    :hidden:
 
-   /autoapi/aPriori/Field3D
-   /autoapi/aPriori/Scalar3D
-   /autoapi/aPriori/Mesh3D
+   /autoapi/aPriori/Field
+   /autoapi/aPriori/Scalar
+   /autoapi/aPriori/Mesh
 
 .. autoapisummary::
 
-   aPriori.Field3D
-   aPriori.Scalar3D
-   aPriori.Mesh3D
+   aPriori.Field
+   aPriori.Scalar
+   aPriori.Mesh
 
 
 Functions

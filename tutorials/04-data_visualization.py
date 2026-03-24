@@ -23,7 +23,7 @@ if not os.path.exists(T_path):
 else:
     print("Folder path OK\n")
 
-DNS_field = ap.Field3D(directory)
+DNS_field = ap.Field(directory)
 
 # Visualize the data
 # Default plotting of a variable along the x, y, z midplanes
