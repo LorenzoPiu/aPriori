@@ -1,4 +1,4 @@
-Tutorial 1: Scalar3D class basic usage
+Tutorial 1: Scalar class basic usage
 =======================================
 
 .. note::
@@ -7,7 +7,7 @@ Tutorial 1: Scalar3D class basic usage
    `here <https://github.com/LorenzoPiu/aPriori/blob/main/tutorials/01-cut_scalar.py>`_.
 
 
-The goal of this tutorial is to demonstrate how the ``Scalar3D`` class works in
+The goal of this tutorial is to demonstrate how the ``Scalar`` class works in
 both its *standard mode* and *light mode*. Understanding these two approaches
 will make it easier to work with large 3D arrays efficiently.
 
@@ -26,7 +26,7 @@ Then:
 
 .. code-block:: python
 
-   from aPriori.DNS import Scalar3D
+   from aPriori.DNS import Scalar
    import numpy as np
 
 Define a generic 3D array that we will use as a scalar field:
@@ -36,14 +36,14 @@ Define a generic 3D array that we will use as a scalar field:
    shape = [30, 20, 15]
    array = np.random.rand(*shape)
 
-Define a ``Scalar3D`` Object
+Define a ``Scalar`` Object
 ----------------------------
 
-You can initialize a ``Scalar3D`` object directly from a NumPy array:
+You can initialize a ``Scalar`` object directly from a NumPy array:
 
 .. code-block:: python
 
-   scalar = Scalar3D(shape=shape, value=array)
+   scalar = Scalar(shape=shape, value=array)
    print(f"Initial shape:\n{scalar.shape}")
 
 This prints:
@@ -73,7 +73,7 @@ Result:
    Shape after 'equal' cut:
    (26, 16, 11)
 
-Using ``Scalar3D`` in Light Mode
+Using ``Scalar`` in Light Mode
 --------------------------------
 
 We now use a real DNS dataset to demonstrate the *light mode*.  
@@ -113,11 +113,11 @@ The BlastNet DNS data include information about the global shape inside
 
    DNS_shape = info["global"]["Nxyz"]
 
-Now we can define the ``Scalar3D`` object in light mode:
+Now we can define the ``Scalar`` object in light mode:
 
 .. code-block:: python
 
-   T = Scalar3D(shape=DNS_shape, path=T_path)
+   T = Scalar(shape=DNS_shape, path=T_path)
 
 Access some values:
 
@@ -137,7 +137,7 @@ Example output:
 Comparing Memory Usage
 ----------------------
 
-Since ``Scalar3D`` stores only a pointer to the file, its memory usage is
+Since ``Scalar`` stores only a pointer to the file, its memory usage is
 minimal—even for very large DNS fields.
 
 Compare with a full NumPy array of the same size:
@@ -152,7 +152,7 @@ Compare with a full NumPy array of the same size:
 
    print(
        f"\nSize of the numpy array:     {T_numpy_size} bytes\n"
-       f"Size of the Scalar3D object: {T_size} bytes"
+       f"Size of the Scalar object: {T_size} bytes"
    )
 
 Typical output:
@@ -160,7 +160,7 @@ Typical output:
 .. code-block:: text
 
    Size of the numpy array:     32000144 bytes
-   Size of the Scalar3D object: 56 bytes
+   Size of the Scalar object: 56 bytes
 
 Cutting DNS Fields in Light Mode
 --------------------------------

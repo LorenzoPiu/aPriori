@@ -7,8 +7,8 @@ Tutorial 5: Cut DNS field
    `here <https://github.com/LorenzoPiu/aPriori/blob/main/tutorials/05-cut_DNS_field.py>`_.
 
 This tutorial shows how to extract a sub-domain from a DNS dataset using the
-:py:meth:`~aPrioriDNS.DNS.Field3D.cut` method. After cutting the field, we load
-the resulting dataset as a new :py:class:`~aPrioriDNS.DNS.Field3D` object and
+:py:meth:`~aPrioriDNS.DNS.Field.cut` method. After cutting the field, we load
+the resulting dataset as a new :py:class:`~aPrioriDNS.DNS.Field` object and
 compare a representative midplane of a variable (here :math:`U_x`) between the
 original and the cut domain.
 
@@ -20,7 +20,7 @@ Import modules and define data path
 
    import os
    import aPriori as ap
-   from aPriori.DNS import Field3D
+   from aPriori.DNS import Field
    from aPriori import DNS
    import json
    
@@ -41,13 +41,13 @@ Cut the DNS field and compare midplanes
       :caption: Cut the field and visualize original vs cut domain
 
       # Load the full DNS field
-      DNS_field = Field3D(directory)
+      DNS_field = Field(directory)
 
       # Cut a sub-domain (example indices along x, y, z)
       cut_field_name = DNS_field.cut([20, 20, 10])
 
-      # Load the cut field as a new Field3D object
-      DNS_field_cut = Field3D(cut_field_name)
+      # Load the cut field as a new Field object
+      DNS_field_cut = Field(cut_field_name)
 
       # Compare the same variable on the z midplane
       DNS_field.plot_z_midplane('U_X', vmin=100, vmax=280)

@@ -124,7 +124,7 @@ Dataset loading and initialization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We begin by specifying the path to the DNS sub-domain and initializing a
-:class:`Field3D` object. If the dataset is not found locally,
+:class:`Field` object. If the dataset is not found locally,
 it is automatically downloaded.
 
 .. code-block:: python
@@ -132,7 +132,7 @@ it is automatically downloaded.
 
    import os
    import aPriori as ap
-   from aPriori.DNS import Field3D
+   from aPriori.DNS import Field
 
    directory = os.path.join('.', 'Lifted_H2_subdomain')
 
@@ -140,7 +140,7 @@ it is automatically downloaded.
    if not os.path.exists(T_path):
        ap.download(dataset='h2_lifted')
 
-   DNS_field = Field3D(directory)
+   DNS_field = Field(directory)
 
 At this stage, the DNS field contains all primitive variables (velocity,
 temperature, species mass fractions) resolved down to the smallest scales.
@@ -177,7 +177,7 @@ source terms :math:`\overline{\dot{\omega}}^{DNS}`.
    :caption: Filtering
 
    filter_size = 16
-   filtered_field = Field3D(DNS_field.filter_favre(filter_size))
+   filtered_field = Field(DNS_field.filter_favre(filter_size))
 
 Compute reaction rates on the filtered field
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

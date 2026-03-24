@@ -7,9 +7,9 @@ aPriori.DNS.gradient_z
    Numpy is used to computed the gradients on all the possible downsampled grids
 
    :param Ur: Is the field to filter.
-   :type Ur: Scalar3D object
+   :type Ur: Scalar object
    :param mesh: Is the mesh object used to compute the derivatives.
-   :type mesh: Mesh3D object
+   :type mesh: Mesh object
    :param filter_size: Is the filter size used to filter the field.
    :type filter_size: int
 

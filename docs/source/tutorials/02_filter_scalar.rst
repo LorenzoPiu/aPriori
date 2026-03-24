@@ -8,7 +8,7 @@ Tutorial 2: Filtering numpy arrays
 
 
 In this tutorial you will learn how to apply spatial filters to a 3D field
-using the :class:`Scalar3D` class.  
+using the :class:`Scalar` class.  
 Make sure you have downloaded the data folder from the GitHub repository
 before starting.
 
@@ -20,7 +20,7 @@ This example shows two use cases:
 1. Filtering a **synthetic 3D NumPy array**  
 2. Filtering a **DNS scalar field** loaded in ``light_mode`` using pointers
 
-The goal is to demonstrate how filtering works, and how ``Scalar3D`` simplifies
+The goal is to demonstrate how filtering works, and how ``Scalar`` simplifies
 operations on large DNS fields.
 
 Import modules
@@ -32,12 +32,12 @@ First, import the modules required for this tutorial:
 
     import numpy as np
     import aPriori.DNS as DNS
-    from aPriori.DNS import Scalar3D
+    from aPriori.DNS import Scalar
 
 Filtering a synthetic array
 ---------------------------
 
-Although ``Scalar3D`` is mainly used with DNS data on disk, it can also store
+Although ``Scalar`` is mainly used with DNS data on disk, it can also store
 arrays directly for convenience.
 
 Define a small test array:
@@ -78,7 +78,7 @@ Filtering DNS temperature data
 ------------------------------
 
 To make a more realistic example, let's filter a temperature field loaded from
-the DNS dataset using ``Scalar3D`` in *light mode*.
+the DNS dataset using ``Scalar`` in *light mode*.
 
 Locate the data directory and temperature file:
 
@@ -108,11 +108,11 @@ The DNS folder contains an ``info.json`` file that stores the grid shape:
 
     DNS_shape = info["global"]["Nxyz"]
 
-Create the ``Scalar3D`` object:
+Create the ``Scalar`` object:
 
 .. code-block:: python
 
-    T = Scalar3D(shape=DNS_shape, path=T_path)
+    T = Scalar(shape=DNS_shape, path=T_path)
 
 Access some values:
 
@@ -148,7 +148,7 @@ Conclusion
 This example showed how to:
 
 - Apply 3D Gaussian and box filters to NumPy arrays
-- Load DNS temperature data using ``Scalar3D`` in lightweight mode
+- Load DNS temperature data using ``Scalar`` in lightweight mode
 - Filter DNS fields without loading the entire dataset into memory
 
 To better visualize the effects of filtering, consider completing the next two

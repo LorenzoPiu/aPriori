@@ -65,7 +65,7 @@ efficiently.
       :caption: Loading the field and computing CSP quantities
 
       # Load the DNS field
-      dns_field = ap.Field3D(directory)
+      dns_field = ap.Field(directory)
 
       # Compute CSP quantities (TSR and APIs)
       # Specify species for which to compute APIs

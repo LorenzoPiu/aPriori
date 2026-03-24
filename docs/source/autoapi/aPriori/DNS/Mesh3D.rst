@@ -1,12 +1,12 @@
-aPriori.DNS.Mesh3D
+aPriori.DNS.Mesh
 ==================
 
-.. py:class:: aPriori.DNS.Mesh3D(X, Y, Z)
+.. py:class:: aPriori.DNS.Mesh(X, Y, Z)
 
    A class used to represent a 3D mesh.
 
-   This class takes three Scalar3D objects representing the X, Y, and Z coordinates of a 3D mesh.
-   It checks that the input objects are instances of the Scalar3D class and have the same shape.
+   This class takes three Scalar objects representing the X, Y, and Z coordinates of a 3D mesh.
+   It checks that the input objects are instances of the Scalar class and have the same shape.
    The shape of the mesh is expected to be a list of three integers.
    The class also provides properties to access the unique values of the X, Y, and Z coordinates and their 3D representations.
    It also provides properties to access the X, Y, and Z coordinates at the midpoints along each axis.
@@ -25,13 +25,13 @@ aPriori.DNS.Mesh3D
    Nz : int
        The size of the mesh along the Z axis.
 
-   X : Scalar3D
+   X : Scalar
        The X coordinates of the mesh.
 
-   Y : Scalar3D
+   Y : Scalar
        The Y coordinates of the mesh.
 
-   Z : Scalar3D
+   Z : Scalar
        The Z coordinates of the mesh.
 
    Methods:

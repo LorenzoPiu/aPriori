@@ -85,16 +85,16 @@ This command should have downloaded from Github a folder with the following stru
 Visualization
 -------------
 
-After downloading the dataset, the following lines of code initialize a Field3D object. 
+After downloading the dataset, the following lines of code initialize a Field object. 
 Once instantiated the object, we can display the field leveraging the plotting utilities:
 
 .. container:: demo
 
    .. code-block:: python
-      :caption: Instantiate Field3D object and visualize variables
+      :caption: Instantiate Field object and visualize variables
 
       # Initialize 3D DNS field
-      field_DNS = ap.Field3D('Lifted_H2_subdomain')
+      field_DNS = ap.Field('Lifted_H2_subdomain')
 
       #----------------------------Visualize the dataset-----------------------------#
    
@@ -221,7 +221,7 @@ All the files contained in the data folder when the command is launched will be 
                                              filter_type='Gauss') # 'Gauss' or 'Box'
 
       # The string with the folder's name is now used to initialize the filered field
-      field_filtered = ap.Field3D(f_string)
+      field_filtered = ap.Field(f_string)
 
       # Visualize the effect of filtering on the Heat Release Rate
       field_DNS.plot_z_midplane('HRR_DNS',

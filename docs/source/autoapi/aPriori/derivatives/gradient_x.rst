@@ -9,9 +9,9 @@ aPriori.derivatives.gradient_x
    Uses striding (filter_size) to compute derivatives on downsampled grids.
 
    :param F: The field to differentiate.
-   :type F: Scalar3D object
+   :type F: Scalar object
    :param mesh: The mesh object containing coordinates (X1D).
-   :type mesh: Mesh3D object
+   :type mesh: Mesh object
    :param filter_size: The stride used to filter the field (default is 1).
    :type filter_size: int, optional
    :param acc: The accuracy order for the finite difference scheme (default is 2).

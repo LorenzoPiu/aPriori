@@ -16,9 +16,9 @@ aPriori.DNS.gradient_x
    field has the same shape as the input field.
 
    :param Ur: Is the field to filter.
-   :type Ur: Scalar3D object
+   :type Ur: Scalar object
    :param mesh: Is the mesh object used to compute the derivatives.
-   :type mesh: Mesh3D object
+   :type mesh: Mesh object
    :param filter_size: Is the filter size used to filter the field.
    :type filter_size: int
    :param verbose: If True, it will output relevant information.
