@@ -40,6 +40,10 @@
    :alt: Zenodo DOI
    :height: 20px
 
+.. |arxiv| image:: https://img.shields.io/badge/Preprint-0864ba?label=arXiv&logo=arxiv&logoColor=white
+   :target: https://arxiv.org/abs/2603.24363
+   :alt: Zenodo DOI
+   :height: 20px
 
 👋 Welcome to aPriori
 =====================
