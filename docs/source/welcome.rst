@@ -95,7 +95,7 @@ Project links
       Report bugs, request features, or ask technical questions.
 
 If you have questions or run into problems that are not suitable as a GitHub
-issue, you can also reach the author by e-mail.
+issue, you can also reach the author by e-mail at `lorenzo.piu@ulb.be`
 
 Navigation guide
 ----------------
