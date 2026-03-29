@@ -18,6 +18,7 @@
    what_is_apriori
    installation
    quickstart
+   journal_article
 
 .. toctree::
    :caption: Fundamentals and usage
