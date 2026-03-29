@@ -1,5 +1,5 @@
 Article preprint
-========================
+================
 
 A journal article describing the methodology, implementation, and
 applications of the framework is available as a preprint on arXiv.
