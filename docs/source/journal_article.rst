@@ -15,10 +15,6 @@ You can **access** and **download** the full preprint here:
 
 **View PDF:**  
 
-
-**Slides:**  
-:download:`Download presentation (PDF) </_static/pdf/Cypher_workshop_apriori.pdf>`
-
 .. raw:: html
 
    <div style="display:flex; justify-content:center; margin-top:1em;">
