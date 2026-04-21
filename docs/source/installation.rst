@@ -26,7 +26,7 @@ The latest stable version of aPriori is available on the Python Package Index (*
    :caption: PyPI installation
 
    pip install aPriori
-
+The installation is not case sensitive.
 Installing via ``pip`` will automatically install the required dependencies:
 
    - ``numpy>=1.18.0``
