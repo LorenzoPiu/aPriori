@@ -20,12 +20,12 @@ Quick Installation (PyPI) |pypi-logo|
 .. |pypi-logo| image:: https://img.shields.io/pypi/v/aprioridns.svg?logo=pypi&logoColor=white
    :target: https://pypi.org/project/aprioridns/
 
-The latest stable version of aPrioriDNS is available on the Python Package Index (**PyPI**):
+The latest stable version of aPriori is available on the Python Package Index (**PyPI**):
 
 .. code-block:: bash
    :caption: PyPI installation
 
-   pip install aPrioriDNS
+   pip install aPriori
 
 Installing via ``pip`` will automatically install the required dependencies:
 
@@ -43,8 +43,8 @@ After installation, verify it worked:
 
 .. code-block:: python
 
-   import aprioridns
-   print(aprioridns.__version__)
+   import aPriori
+   print(aPriori.__version__)
 
 Optional: creating a virtual environment
 ----------------------------------------
@@ -62,7 +62,7 @@ a clean environment:
          source .venv/bin/activate   # on macOS / Linux
          .venv\Scripts\activate      # on Windows
 
-         pip install aprioridns
+         pip install apriori
 
    .. tab-item:: Conda
 
@@ -70,7 +70,7 @@ a clean environment:
 
          conda create -n apriori python=3.11
          conda activate apriori
-         pip install aprioridns
+         pip install apriori
 
 
 Installing the Development Version (for Contributors)
@@ -95,7 +95,7 @@ To upgrade the PyPI version:
 
 .. code-block:: bash
 
-   pip install --upgrade aprioridns
+   pip install --upgrade apriori
 
 To update the development version:
 
@@ -104,6 +104,11 @@ To update the development version:
    git pull
    pip install -e .
 
+.. note::
+   
+   To install older versions of this package (prior to version **1.3.1**), use the legacy package name::
+
+       pip install aPrioriDNS
 
 You're ready to go!
 -------------------
