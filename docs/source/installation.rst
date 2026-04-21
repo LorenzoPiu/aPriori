@@ -18,7 +18,7 @@ Quick Installation (PyPI) |pypi-logo|
 -------------------------
 
 .. |pypi-logo| image:: https://img.shields.io/pypi/v/aprioridns.svg?logo=pypi&logoColor=white
-   :target: https://pypi.org/project/aprioridns/
+   :target: https://pypi.org/project/apriori/
 
 The latest stable version of aPriori is available on the Python Package Index (**PyPI**):
 
@@ -105,7 +105,7 @@ To update the development version:
    pip install -e .
 
 .. note::
-   
+
    To install older versions of this package (prior to version **1.3.1**), use the legacy package name::
 
        pip install aPrioriDNS
