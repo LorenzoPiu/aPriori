@@ -36,7 +36,7 @@ code:
 Run the following command to install:
 
 ```python
-pip install aPrioriDNS
+pip install apriori
 ```
 
 This will automatically install or update the following dependencies if necessary:
@@ -49,6 +49,12 @@ This will automatically install or update the following dependencies if necessar
 - requests>=2.32.0.
 - PyCSP>=1.4.0
 - findiff>=0.12
+
+**_ℹ️ Installation note_**
+To install versions of this package prior to **1.3.1**, use the legacy package name:
+```bash
+pip install aPrioriDNS
+```
 
 ## Documentation
 
