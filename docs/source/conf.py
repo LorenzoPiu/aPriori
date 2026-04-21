@@ -34,7 +34,7 @@ autoapi_own_page_level = "function"
 project = 'aPriori'
 copyright = 'Copyright © 2026, Lorenzo Piu, Heinz Pitsch, Alessandro Parente'
 author = 'Lorenzo Piu'
-release = '1.1.10'
+release = '1.3.1'
 html_title = "aPriori Documentation"
 
 # -- General configuration ---------------------------------------------------
@@ -138,6 +138,8 @@ html_context = {
     "source_type": "github",
     "source_user": "LorenzoPiu",
     "source_repo": "aPriori",
+    "source_version": "main",
+    "source_docs_path": "/docs/source/",
 }
 
 bibtex_bibfiles = ["references.bib"]
