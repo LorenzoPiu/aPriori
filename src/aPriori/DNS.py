@@ -1622,7 +1622,7 @@ class Field():
         
         return 
     
-    def compute_reaction_rates_batch(self, n_chunks=1000, tau_c='SFR', tau_m='Kolmo', tau_star_max=0.1, parallel=False, n_proc=None, exist_ok=False, overwrite=False):
+    def compute_reaction_rates_batch(self, n_chunks=1000, tau_c='SFR', tau_m='Kolmo', tau_star_max=0.1, use_advancement_timestep=False, parallel=False, n_proc=None, exist_ok=False, overwrite=False):
         '''
         Computes the reaction rates in batches for a filtered field.
     
@@ -1730,6 +1730,16 @@ class Field():
         Tau_c_chunk_generator = read_variable_in_chunks(self.find_path(f'Tau_c_{tau_c}'), chunk_size)
         species_chunk_generator = [read_variable_in_chunks(specie_path, chunk_size) for specie_path in species_paths]
         
+
+        if use_advancement_timestep:
+            delta_x = self.mesh.l * self.filter_size
+            if not hasattr(self, "U_LES"): # is it ok here to assume that we are in LES?
+                self.compute_velocity_module()
+            max_u = np.max(self.U_LES.value)
+            delta_t_advancement = delta_x / max_u
+            # print(f"debug info: {self.mesh.l}, {self.mesh._X1D}, {self.filter_size}, {max_u}")
+            print(f'Using advancement timestep deltaT = {delta_t_advancement}')
+
         print('Reading file in chunks: read 0/{}'.format(n_chunks))
     
         for i in range(n_chunks):
@@ -1763,7 +1773,9 @@ class Field():
                     gas.TPY  = T_chunk[j], P_chunk[j], Y_chunk[:, j]
                     tau_star = np.minimum(Tau_c_chunk[j], Tau_m_chunk[j])
                     tau_star = np.minimum(tau_star, tau_star_max) # limit the maximum residence time to avoid too long reactor integrations in non-reacting regions
-                    
+                    if use_advancement_timestep:
+                        tau_star = np.minimum(tau_star, delta_t_advancement) # limit the maximum residence time with the advancement time
+
                     Y0       = gas.Y
                     h0       = gas.partial_molar_enthalpies/gas.molecular_weights # partial mass enthalpy [J/kg].
                     
@@ -4376,8 +4388,11 @@ class Mesh:
         self._Z1D = np.unique(self.Z.value)
         
         # Characteristic mesh dimension (approximated with the avg value)
-        self.l = (np.average(np.diff(self.X1D))*np.average(np.diff(self.Y1D))*np.average(np.diff(self.Z1D)))**(1/3)
-        
+        if len(self.Z1D) > 1: 
+            self.l = (np.average(np.diff(self.X1D))*np.average(np.diff(self.Y1D))*np.average(np.diff(self.Z1D)))**(1/3)
+        else: # 2D field. #TODO think about a better way to handle this
+            self.l = (np.average(np.diff(self.X1D))*np.average(np.diff(self.Y1D)))**(1/2)
+
     # The value attribute contains the array with the values of the field.
     # By default it is reshaped in a 3d array
     
