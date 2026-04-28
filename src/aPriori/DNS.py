@@ -1696,9 +1696,9 @@ class Field():
         for path in reaction_rates_paths:
             if os.path.exists(path):
                 if not already_asked:
-                    if exist_ok:
+                    if exist_ok: # skip the computation
                         return
-                    if overwrite:
+                    if overwrite: # delete existing files and redo the computation
                         user_input = 'yes'
                     else:
                         user_input = input(f"The folder '{self.data_path}' already contains the reaction rates. \nThis operation will overwrite the content of the folder. \nDo you want to continue? ([yes]/no): ")
