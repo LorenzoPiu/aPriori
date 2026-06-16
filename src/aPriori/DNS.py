@@ -9,7 +9,7 @@ __copyright__ = "Copyright (c) 2024-2026, Lorenzo Piu, Heinz Pitsch, and Alessan
 __credits__ = ["Aero-Thermo-Mechanics laboratories - Universite Libre de Bruxelles, Brussels, Belgium"
                "Institut für Technische Verbrennung (ITV) - RWTH Aachen University, Aachen, Germany"]
 __license__ = "GPL 3.0"
-__version__ = "1.3.0"
+__version__ = "1.3.2"
 __maintainer__ = ["Lorenzo Piu"]
 __email__ = ["lorenzo.piu@ulb.be"]
 __status__ = "Production"

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "apriori"
-version = "1.3.1"
+version = "1.3.2"
 authors = [
   { name="Lorenzo Piu", email="lorenzo.piu@ulb.be" },
 ]
