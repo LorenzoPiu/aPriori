@@ -1505,7 +1505,7 @@ class Field():
         else:
             mode = 'LFR'
             
-        # Step 4: build a list with reaction rates paths and one with the species' Mass fractions paths
+        # Step 3: build a list with reaction rates paths and one with the species' Mass fractions paths
         reaction_rates_paths = []
         for attr, path in zip(self.attr_list, self.paths_list):
             if attr.startswith('R'):
@@ -1526,7 +1526,7 @@ class Field():
                              "\n>>> your_filt_field.compute_reaction_rates()"
                              "\n\nOperation aborted.")
         
-        # Step 3: Check that the files of the reaction rates do not exist yet
+        # Step 4: Check that the files of the reaction rates do not exist yet
         count = 0
         for path in reaction_rates_paths:
             if os.path.exists(path):
@@ -2660,7 +2660,7 @@ class Field():
                 print("Operation aborted.")
                 sys.exit()
             else:
-                pass
+                shutil.rmtree(filt_folder)
         if not os.path.exists(filt_data_path):
             os.makedirs(filt_data_path)
         if not os.path.exists(filt_grid_path):
