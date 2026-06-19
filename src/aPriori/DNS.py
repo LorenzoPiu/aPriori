@@ -2771,7 +2771,7 @@ class Field():
                 print("Operation aborted.")
                 sys.exit()
             else:
-                pass
+                shutil.rmtree(filt_folder_path)
         if not os.path.exists(filt_data_path):
             os.makedirs(filt_data_path)
         if not os.path.exists(filt_grid_path):
