@@ -6,7 +6,6 @@
 [![Static Badge](https://img.shields.io/badge/Documentation-ReadTheDocs-green?logo=readthedocs&logoColor=white)](https://apriori.readthedocs.io)
 [![Static Badge](https://img.shields.io/badge/Issues-Github-02bfa6?&logo=Github&logoColor=white)](https://github.com/LorenzoPiu/aPrioriDNS/issues)
 [![Static Badge](https://img.shields.io/pepy/dt/aPrioriDNS?logo=pypi&logoColor=white&color=#03b1fc)](https://pepy.tech/projects/apriori)
-[![PyPI Downloads](https://static.pepy.tech/personalized-badge/apriori?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREY&right_color=03b1fc&left_text=Downloads)](https://pepy.tech/projects/apriori)
 [![Static Badge](https://img.shields.io/badge/Journal%20article-blue?label=DOI)](https://doi.org/10.1007/s10494-024-00626-3)
 [![Static Badge](https://img.shields.io/badge/Preprint-0864ba?label=arXiv&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2603.24363)
 
